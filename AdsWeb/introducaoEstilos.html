@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap" rel="stylesheet">
+    <style>
+        /*aplica a teg a todos os elementos*/
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'ADLaM Display', cursive;
+        }
+        /*Seletor pela tag*/
+        p{
+            /*Estilo inserido com o metodo Interno*/
+            background-color: pink;
+        }
+        /*Seletor pela class*/
+        .paragrafo{
+            background-color: aqua;
+        }
+        /*Seletor pelo ID*/
+        #paragrafoPorId{
+            background-color: cornsilk;
+            color: blue;
+        }
+        body{
+            background-color: azure;
+            background-image: url(Captura\ de\ tela\ 2023-08-29\ 211959.png);
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body style="background-color: bisque;"><!--Estilo inserido com o metodo Inline-->
+    <h1>Aula CSS</h1>
+
+    <p style="background-color: aqua; color: chocolate;">Olá Mundo</p><!--Estilo inserido com o metodo Inline aqui não altera pois o que pretere e o inline-->
+    <p>Aula css</p><!--Estilo inserido com o metodo Interno-->
+    <br>
+    <p>Outro Paragrafo</p>
+    <p class="paragrafo">Outro Paragrafo com class</p>
+    <p>Outro Paragrafo</p>
+    <p class="paragrafo">Outro Paragrafo com class</p>
+    <p>Outro Paragrafo</p>
+    <br>
+    <p id="paragrafoPorId">Outro Paragrafo por ID</p>
+    <br>
+    <p class="paragrafo" style="background-color: black;" id="paragrafoPorId" >Outro Paragrafo</p>
+
+    <h2>Subtitulo</h2>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Tabelas</h1>
+
+    <table border ='2'>
+        <tr><!--cria linhas-->
+            <th>Nome</th><!--Cria as colunas-->
+            <th>Idade</th>
+            <th>Email</th>
+        </tr>
+        <tr>
+            <td rowspan="2">Marcelo Petri</td><!--rowspan="2" Mescla linhas-->
+            <td>44</td>
+            <td>marcelo.petri@prof.sc.senac.br</td>
+        </tr>
+        <tr>
+            <td>65</td>
+            <td>João@sauro.com.br</td>
+        </tr>
+        <tr>
+            <td>João da Silva</td>
+            <td>66</td>
+            <td>João@sauro.com.br</td>
+        </tr>
+    </table>
+    <br><!-- pula linhas-->
+    <table border ='2'>
+        <caption>Esta tabela esta na lateral</caption>
+        <tr>
+            <th>Nome</th>
+            <td>Marcelo Petri</td>
+            <td>João da Silva</td>
+        </tr>
+        <tr>
+            <th>Idade</th>
+            <td>44</td>
+            <td>66</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>marcelo.petri@prof.sc.senac.br</td>
+            <td>João@sauro.com.br</td>
+        </tr>
+        <tr>
+            <td colspan="3">Rodapé</td><!-- colspan="3" mescla colunas-->
+        </tr>
+        <br>
+    </table>
+    <br>
+</body>
+</html>

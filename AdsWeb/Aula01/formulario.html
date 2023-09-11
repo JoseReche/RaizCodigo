@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulários</title>
+</head>
+<body>
+    <h1>Formulários</h1>
+    <form action="">
+        <fieldset>
+            <legend>Cadastro</legend>
+            <label for="txtNome">Nome:</label><!--label Cria descrição com uma melhor estilização no css-->
+            <input type="text" id="txtNome" placeholder="Nome"><!--lincando com a label por meio do ID-->
+            <br>
+            <label for="txtSobrenome">Sobrenome: </label>
+            <input type="text" id="txtSobrenome" placeholder="Sobrenome"><!--Cria um tzto para aparecer dentro-->
+            <br>
+            <label for="txtEmail">Email: </label>
+            <input type="email" id="txtEmail" placeholder="exemplo@gmail.com">
+            <br>
+            <label for="txtSenha">Senha: </label>
+            <input type="password" id="txtSenha">
+            <br>
+            <label for="textArea">Mensagem:</label>
+
+            <br>
+
+            <textarea id="textArea" cols="30" rows="5"></textarea>
+
+            <br>
+
+            <label for="txtCarros">Tipos de Carros:</label>
+
+            <select for="txtCarros" id="y=txtCarros">
+                <option value="">-- Selecione --</option>
+                <option value="Fusca">Fusca</option>
+                <option value="camaro">camaro</option>
+                <option value="ferrari">ferrari</option>
+                <option value="chevete">chevete</option>
+            </select>
+            <br>
+            <input type="checkbox" id="autorizacao"><label for="autorizacao">Autoriza a divulgação dos seus dados</label>
+            <br>
+            <input type="checkbox" id="rim"><label for="rim">Rim</label>
+            <br>
+            <input type="checkbox" id="retirar"><label for="retirar">retirar</label>
+            <br>
+            <br>
+            <input type="radio" name="preferencia"><label for="filmes">Filme</label>
+            <input type="radio" name="preferencia"><label for="jogo">Jogo</label>
+            <input type="radio" name="preferencia"><label for="esporte">Esporte</label>
+        </fieldset>
+        <fieldset>
+            <input type="button" value="Enviar">
+            <button>
+                Outro Envio
+            </button>
+            <input type="submit" value="Enviar Formulário" name="btnEnviar">
+            <input type="reset" value="Limpar Formulário">
+        </fieldset>
+    </form>
+</body>
+</html>
