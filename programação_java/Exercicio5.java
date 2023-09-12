@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 /*
 1) Crie uma classe que represente uma Pessoa, devendo ter as propriedades Nome, Peso, Altura e Data de Nascimento e o método IMC, que retornará o valor do IMC.
-2) Crie um programa que receba a pessoa criada e verifique qual o IMC.
+2) Crie um programa que receba a pessoa criada e verifique qual o IMC. OK
 
     IMC	Classificação
     Abaixo de 18,5	Abaixo do Peso
@@ -13,7 +13,7 @@ import java.util.ArrayList;
     Entre 25,0 e 29,9	Levemente acima do peso
     Entre 30,0 e 34,9	Obesidade Grau I
     Entre 35,0 e 39,9	Obesidade Grau II
-    Acima de 40	Obesidade Grau III (mórbida)
+    Acima de 40	Obesidade Grau III (mórbida) OK
 3) Crie uma classe que represente uma Conta Corrente, devendo ter as propriedades
     Número da Conta, Agência, Saldo, Nome do Titular e os métodos Depósito, Saque e Saldo Total.
 4) Crie um programa que receba a conta corrente e deposite e saque valores, ao final imprimindo o saldo existente.
@@ -26,6 +26,16 @@ import java.util.ArrayList;
 public class Exercicio5 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        do{
+            System.out.println("======================================");
+            System.out.println("||      Bem Vindo Ao Exercicio      ||");
+            System.out.println("||==================================||");
+            System.out.println("|| Selecione uma das opçoes a baixo ||");
+            System.out.println("======================================");
+        }    
+
+
         Pessoa pessoa = new Pessoa("José",200.0,1.70,"20/10/2014");
         pessoa.IMC();
     }
