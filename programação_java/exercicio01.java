@@ -30,7 +30,7 @@ public class exercicio01 {
          * De 2.826,66 até 3.751,05 15%
          * De 3.751,06 até 4.664,68 22,5%
          * Acima de 4.664,68 27,5
-         * jose lindo
+         *
          */
         int op;
         do {

@@ -1,35 +1,31 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+/*
+1) Crie uma classe que represente uma Pessoa, devendo ter as propriedades Nome, Peso, Altura e Data de Nascimento e o método IMC, que retornará o valor do IMC.
+2) Crie um programa que receba a pessoa criada e verifique qual o IMC.
 
-public class Exercicio4 {
+    IMC	Classificação
+    Abaixo de 18,5	Abaixo do Peso
+    Entre 18,6 e 24,9	Peso Ideal
+    Entre 25,0 e 29,9	Levemente acima do peso
+    Entre 30,0 e 34,9	Obesidade Grau I
+    Entre 35,0 e 39,9	Obesidade Grau II
+    Acima de 40	Obesidade Grau III (mórbida)
+3) Crie uma classe que represente uma Conta Corrente, devendo ter as propriedades
+    Número da Conta, Agência, Saldo, Nome do Titular e os métodos Depósito, Saque e Saldo Total.
+4) Crie um programa que receba a conta corrente e deposite e saque valores, ao final imprimindo o saldo existente.
+5) Crie uma classe que calcule a área de uma circunferência, recebendo com valor inicial o raio
+6) Crie uma classe para Cifra de César, devendo ter um método criptografia e receba como valor inicial uma mensagem e o valor constante.
+    Cifra de César é uma das criptografias mais antigas conhecidas, onde a chave está no valor constante, para cada letra do alfabeto atribuí-se um número
+    (exemplo: A=1;B=2;C=3,etc), então para cada letra da mensagem, soma-se o valor correspondente a esta letra ao valor constante,
+    gerando uma nova letra para formar a nova mensagem, ou seja, a mensagem "Ataque a roma" com um valor constante de 3 seria "dwdtxh d urpd". Dica, utilize arrays para isso.
+*/
+public class Exercicio5 {
+
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        /*
-         1) Crie um programa que questione a quantidade de notas a ser informada, receba as notas e calcule a média. 
-         2) Crie um programa que imprima um arrays com Foreach. 
-         3) Crie um programa que leia 10 valores double e salve em um array, depois imprima esses valores. 
-         4) Crie um programa que leia 10 valores int e salve em um array, depois imprima se esses valores são pares ou ímpares. 
-         5) Crie um programa que possua uma collection que represente as 52 cartas do baralho, imrpima elas. 
-         6) Crie um programa que una duas listas de inteiros. 
-         7) Crie um programa que simule a fila de atendimento de um banco. 
-         8) Crie um programa que receba a temperatura média de cada mês do ano e após exiba a temperatura média do ano. 
-         9) Crie dois arrays de 10 posições e depois gere um terceiro array com os valores intercalados desses dois arrays, ao final, imprima os 3. 
-         10) Crie um programa que leia 20 valores, calcule a média aritmética desses valores e imprima os valores que são inferiores a esta média.
-
-        DESAFIO
-        Crie um program aque questione 5 perguntas:
-        Telefonou a vítima?
-        Esteve no local do crime?
-        Mora perto da vítima?
-        Devia para a vítima?
-        Já trabalhou com a vítima?
-        Conforme as respostas sim, deve imprimir a classificação da pessoa que respondeu:
         
-        0-1 - Inocente
-        2 - Suspeita
-        3-4 - Cumplice
-        5 - Assassino
-         */
         int op;
         do {
             {// menu
@@ -37,7 +33,7 @@ public class Exercicio4 {
                 System.out.println("===================== Bem vindo ===================================");
                 System.out.println(" ");
                 System.out.println("==========Escolha um dos exercicios para iniciar===================");
-                System.out.println("[01] => Quantas Notas? ");
+                System.out.println("[01] => IMC ");
                 System.out.println("[02] => Foreach");
                 System.out.println("[03] => Double array");
                 System.out.println("[04] => Integer array");
@@ -77,10 +73,9 @@ public class Exercicio4 {
                     }
                     break;
                 }//OK
-                case 2: {// Crie um programa que imprima um arrays com Foreach. 
+                case 2: {// Crie um programa que imprima um arrays com Foreach.
                     System.out.println("===================== Foreach ==============================");
                     Integer[] numeros = { 1,2,3,4,5,6,7,8,9};
-                    
                     for(Integer numero : numeros){
                         System.out.println(numero);
                     }
@@ -114,13 +109,11 @@ public class Exercicio4 {
                      // Criando um ArrayList de strings (Tipo da carta)
                     ArrayList<String> simbolos = new ArrayList<>();
                     ArrayList<String> valores = new ArrayList<>();
-                    
                     // Adicionando elementos ao ArrayList Simbolos
                     simbolos.add(" ♥ ");
                     simbolos.add(" ♣ ");
                     simbolos.add(" ♦ ");
                     simbolos.add(" ♠ ");
-                    
                     // Adicionando elementos ao ArrayList
                     valores.add(" A ");
                     valores.add(" 2 ");
@@ -135,7 +128,6 @@ public class Exercicio4 {
                     valores.add(" J ");
                     valores.add(" Q ");
                     valores.add(" K ");
-        
                     for(int i=1; i<=4;i++) {
                         int j;
                         if(i==1){
@@ -159,18 +151,15 @@ public class Exercicio4 {
                     // Criando um array de inteiros
                     int[] numero1 = {1, 2, 3, 4, 5};
                     int[] numero2 = {6, 7, 8, 9, 10};
-                    int[] numero = next int[];
-                    
+                    int[] numero = new int[50];
                     int calculo = numero1.length + numero2.length;
                     int y;
                     for(int i=0;i<=calculo;i++){
-                      if(i<=numero1.length){
-                        numero[i] = numero1[i]; 
-                      }else{
-                        numero[i] = numero2[i];  
-                      }
-                      
-                    }
+                        if(i<=numero1.length){
+                            numero[i] = numero1[i]; 
+                        }else{
+                            numero[i] = numero2[i];
+                        }
                     for(int i=0;i<=numero.length;i++){
                         System.out.println(numero[i]);
                     }
@@ -199,7 +188,6 @@ public class Exercicio4 {
                     System.out.println(" ");
                     Double temperatura;
                     Double media=0.0;
-                    
                     for(int i=0;i<12;i++){
                         System.out.println("Digite a temperatura do mês");
                         temperatura = scanner.nextDouble();
@@ -215,14 +203,11 @@ public class Exercicio4 {
                     int[] numero1 = new int[9];
                     int[] numero2 = new int[9];
                     int[] numerosJuntos = new int[19];
-                    
                     for(int i=0;i<10;){
                         numerosJuntos[i] = numero1[i];
                         numerosJuntos[(i+1)] = numero2[i];
                         i+=2;
                     }
-                    
-                    
                     break;
                 }
                 case 10: {//Crie um programa que leia 20 valores, calcule a média aritmética desses valores e imprima os valores que são inferiores a esta média.
@@ -268,13 +253,11 @@ public class Exercicio4 {
                     Devia para a vítima?
                     Já trabalhou com a vítima?
                     Conforme as respostas sim, deve imprimir a classificação da pessoa que respondeu:
-                    
                     0-1 - Inocente
                     2 - Suspeita
                     3-4 - Cumplice
                     5 - Assassino
                      */
-                     
                     break;
                 }
             }
