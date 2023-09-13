@@ -1,4 +1,3 @@
-import java.lang.ref.Cleaner;
 import java.util.Scanner;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction;

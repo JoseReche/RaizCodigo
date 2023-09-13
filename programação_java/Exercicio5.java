@@ -1,8 +1,10 @@
 package programação_java;
 
 import programação_java.Pessoa;
+import programação_java.Banco;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 /*
 1) Crie uma classe que represente uma Pessoa, devendo ter as propriedades Nome, Peso, Altura e Data de Nascimento e o método IMC, que retornará o valor do IMC.
 2) Crie um programa que receba a pessoa criada e verifique qual o IMC. OK
@@ -26,17 +28,62 @@ import java.util.ArrayList;
 public class Exercicio5 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        int op;
         do{
             System.out.println("======================================");
             System.out.println("||      Bem Vindo Ao Exercicio      ||");
             System.out.println("||==================================||");
             System.out.println("|| Selecione uma das opçoes a baixo ||");
+            System.out.println("|| [0] -  Sair                      ||");
+            System.out.println("|| [1] -  IMC                       ||");
+            System.out.println("|| [2] -  Banco                     ||");
             System.out.println("======================================");
-        }    
+            System.out.print("=>  ");
+            op = scanner.nextInt();
+            switch (op){
+                case 0:{
+                    System.out.println("Saindo...");
+                    break;
+                }
+                case 1:{
+                    String nome,dataNascimento;
+                    Double peso,altura;
+                    System.out.println("======================================");
+                    System.out.println("||     Bem Vindo Ao Calculo IMC     ||");
+                    System.out.println("||==================================||");
 
+                    System.out.println("Digite o nome da pessoa ");
+                    System.out.print("=>  ");
+                    nome = scanner.next();
+                    try {
+                        System.out.println("Digite o peso da pessoa ");
+                        System.out.print("=>  ");
+                        peso = scanner.nextDouble();
+                    } catch (ArithmeticException e) {
+                        System.out.println("Ocorreu uma exceção: "+ e.getMessage());
+                    }catch(NumberFormatException e){
+                        System.out.println("Ocorreu uma ssssssssssexceção: " + e.getMessage());
+                    }
+                   
+                    peso = scanner.nextDouble(); 
 
-        Pessoa pessoa = new Pessoa("José",200.0,1.70,"20/10/2014");
-        pessoa.IMC();
+                    System.out.println("Digite a altura da pessoa ");
+                    altura = scanner.nextDouble();
+
+                    System.out.println("Digite a data de nascimento da pessoa ");
+                    System.out.print("=>  ");
+                    dataNascimento = scanner.next();
+
+                    Pessoa pessoa = new Pessoa(nome,peso,altura,dataNascimento);
+                    pessoa.IMC();
+                    break;
+                }
+                case 2:{
+                    
+                    break;
+                }
+            }
+        }while(op!=0);
+        scanner.close();
     }
 }
