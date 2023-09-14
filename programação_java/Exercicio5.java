@@ -62,7 +62,7 @@ public class Exercicio5 {
                     } catch (ArithmeticException e) {
                         System.out.println("Ocorreu uma exceção: "+ e.getMessage());
                     }catch(NumberFormatException e){
-                        System.out.println("Ocorreu uma ssssssssssexceção: " + e.getMessage());
+                        System.out.println("Ocorreu uma exceção: " + e.getMessage());
                     }
                    
                     peso = scanner.nextDouble(); 
