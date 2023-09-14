@@ -38,7 +38,7 @@ public class Exercicio5 {
             System.out.println("|| [1] -  IMC                       ||");
             System.out.println("|| [2] -  Banco                     ||");
             System.out.println("======================================");
-            System.out.print("=>  ");
+            Seta();
             op = scanner.nextInt();
             switch (op){
                 case 0:{
@@ -53,20 +53,15 @@ public class Exercicio5 {
                     System.out.println("||==================================||");
 
                     System.out.println("Digite o nome da pessoa ");
-                    System.out.print("=>  ");
+                    Seta();
                     nome = scanner.next();
-                    peso = valid();
-                    System.out.print("=>  "+peso);
-                    altura = valid();
-                    System.out.print("=>  "+altura);
-                   
-                    peso = scanner.nextDouble(); 
 
-                    System.out.println("Digite a altura da pessoa ");
-                    altura = scanner.nextDouble();
+                    peso = Valid(" Peso ");
+
+                    altura = Valid(" Altura ");
 
                     System.out.println("Digite a data de nascimento da pessoa ");
-                    System.out.print("=>  ");
+                    Seta();
                     dataNascimento = scanner.next();
 
                     Pessoa pessoa = new Pessoa(nome,peso,altura,dataNascimento);
@@ -81,18 +76,22 @@ public class Exercicio5 {
         }while(op!=0);
         scanner.close();
     }
-    public static Double valid(){
+    public static Double Valid(String txt){
         Scanner scanner = new Scanner(System.in);
         Double valor=0.0;
         try {
-            System.out.println("Digite o peso da pessoa ");
-            System.out.print("=>  ");
+            System.out.println("Digite o "+txt+" da pessoa ");
+            Seta();
             valor = scanner.nextDouble();
         }catch (Throwable t) {
             System.out.println("Ocorreu uma exceção: "+ t.getMessage()+"   "+ valor);
-            valor = valid();
+            valor = Valid(txt);
         }
         
         return valor;
     }
+    public static void Seta(){
+        System.out.print("=>  ");
+    }
+    
 }

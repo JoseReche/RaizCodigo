@@ -1,3 +1,4 @@
+package programação_java;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -164,8 +165,6 @@ public class Exercicio4 {
                         }else{
                             numero[i] = numero2[i];
                         }
-                    for(int i=0;i<=numero.length;i++){
-                        System.out.println(numero[i]);
                     }
                     break;
                 }//Corrigir

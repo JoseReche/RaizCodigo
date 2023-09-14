@@ -1,3 +1,4 @@
+package programação_java;
 import java.util.Scanner;
 
 public class exercicio02 {
