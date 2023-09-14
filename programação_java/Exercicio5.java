@@ -55,15 +55,10 @@ public class Exercicio5 {
                     System.out.println("Digite o nome da pessoa ");
                     System.out.print("=>  ");
                     nome = scanner.next();
-                    try {
-                        System.out.println("Digite o peso da pessoa ");
-                        System.out.print("=>  ");
-                        peso = scanner.nextDouble();
-                    } catch (ArithmeticException e) {
-                        System.out.println("Ocorreu uma exceção: "+ e.getMessage());
-                    }catch(NumberFormatException e){
-                        System.out.println("Ocorreu uma exceção: " + e.getMessage());
-                    }
+                    peso = valid();
+                    System.out.print("=>  "+peso);
+                    altura = valid();
+                    System.out.print("=>  "+altura);
                    
                     peso = scanner.nextDouble(); 
 
@@ -85,5 +80,19 @@ public class Exercicio5 {
             }
         }while(op!=0);
         scanner.close();
+    }
+    public static Double valid(){
+        Scanner scanner = new Scanner(System.in);
+        Double valor=0.0;
+        try {
+            System.out.println("Digite o peso da pessoa ");
+            System.out.print("=>  ");
+            valor = scanner.nextDouble();
+        }catch (Throwable t) {
+            System.out.println("Ocorreu uma exceção: "+ t.getMessage()+"   "+ valor);
+            valor = valid();
+        }
+        
+        return valor;
     }
 }
