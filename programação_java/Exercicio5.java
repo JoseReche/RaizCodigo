@@ -6,17 +6,17 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 /*
-1) Crie uma classe que represente uma Pessoa, devendo ter as propriedades Nome, Peso, Altura e Data de Nascimento e o método IMC, que retornará o valor do IMC.
-2) Crie um programa que receba a pessoa criada e verifique qual o IMC. OK
+*1) Crie uma classe que represente uma Pessoa, devendo ter as propriedades Nome, Peso, Altura e Data de Nascimento e o método IMC, que retornará o valor do IMC. 
+*2) Crie um programa que receba a pessoa criada e verifique qual o IMC. 
 
-    IMC	Classificação
-    Abaixo de 18,5	Abaixo do Peso
-    Entre 18,6 e 24,9	Peso Ideal
-    Entre 25,0 e 29,9	Levemente acima do peso
-    Entre 30,0 e 34,9	Obesidade Grau I
-    Entre 35,0 e 39,9	Obesidade Grau II
-    Acima de 40	Obesidade Grau III (mórbida) OK
-3) Crie uma classe que represente uma Conta Corrente, devendo ter as propriedades
+*    IMC	Classificação
+*    Abaixo de 18,5	Abaixo do Peso
+*    Entre 18,6 e 24,9	Peso Ideal
+*    Entre 25,0 e 29,9	Levemente acima do peso
+*    Entre 30,0 e 34,9	Obesidade Grau I
+*    Entre 35,0 e 39,9	Obesidade Grau II
+*    Acima de 40	Obesidade Grau III (mórbida) OK
+*3) Crie uma classe que represente uma Conta Corrente, devendo ter as propriedades
     Número da Conta, Agência, Saldo, Nome do Titular e os métodos Depósito, Saque e Saldo Total.
 4) Crie um programa que receba a conta corrente e deposite e saque valores, ao final imprimindo o saldo existente.
 5) Crie uma classe que calcule a área de uma circunferência, recebendo com valor inicial o raio
@@ -46,26 +46,38 @@ public class Exercicio5 {
                     break;
                 }
                 case 1:{
-                    String nome,dataNascimento;
-                    Double peso,altura;
-                    System.out.println("======================================");
-                    System.out.println("||     Bem Vindo Ao Calculo IMC     ||");
-                    System.out.println("||==================================||");
+                    Boolean condi = false;
+                    String validCondi;
+                    while (condi!=true){
+                        String nome,dataNascimento;
+                        Double peso,altura;
+                        System.out.println("======================================");
+                        System.out.println("||     Bem Vindo Ao Calculo IMC     ||");
+                        System.out.println("======================================");
 
-                    System.out.println("Digite o nome da pessoa ");
-                    Seta();
-                    nome = scanner.next();
+                        System.out.println("Digite o nome da pessoa ");
+                        Seta();
+                        nome = scanner.next();
+    
+                        peso = Valid(" Peso ");
+    
+                        altura = Valid(" Altura ");
+    
+                        System.out.println("Digite a data de nascimento da pessoa ");
+                        Seta();
+                        dataNascimento = scanner.next();
+    
+                        Pessoa pessoa = new Pessoa(nome,peso,altura,dataNascimento);
+                        pessoa.IMC();
 
-                    peso = Valid(" Peso ");
-
-                    altura = Valid(" Altura ");
-
-                    System.out.println("Digite a data de nascimento da pessoa ");
-                    Seta();
-                    dataNascimento = scanner.next();
-
-                    Pessoa pessoa = new Pessoa(nome,peso,altura,dataNascimento);
-                    pessoa.IMC();
+                        System.out.println("Deseja continuar? [S] - Sim [N] - Não");
+                        Seta();
+                        validCondi = scanner.next();
+                        validCondi = validCondi.toUpperCase();
+                        if (validCondi=="S") {
+                            condi = true;
+                        }
+                    }
                     break;
                 }
                 case 2:{
@@ -84,7 +96,7 @@ public class Exercicio5 {
             Seta();
             valor = scanner.nextDouble();
         }catch (Throwable t) {
-            System.out.println("Ocorreu uma exceção: "+ t.getMessage()+"   "+ valor);
+            System.out.println("Ocorreu uma exceção: "+ t.getMessage());
             valor = Valid(txt);
         }
         
