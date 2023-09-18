@@ -22,10 +22,10 @@ public class Banco {
     }
 
     public void Operacao(Double valor,Integer p1){
-        if(p1==1){
+        if(p1==1){//Deposito
             this.saldo += valor;
             SaldoTotal();
-        }else if(p1==2){
+        }else if(p1==2){//Saque
             this.saldo -= valor;
             SaldoTotal();
         }

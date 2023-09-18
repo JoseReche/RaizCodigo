@@ -1,5 +1,6 @@
 package programação_java;
 
+import programação_java.Raio;
 import programação_java.Pessoa;
 import programação_java.Banco;
 import java.util.Scanner;
@@ -16,8 +17,8 @@ import java.util.Scanner;
 *    Acima de 40	Obesidade Grau III (mórbida) OK
 *3) Crie uma classe que represente uma Conta Corrente, devendo ter as propriedades
 *    Número da Conta, Agência, Saldo, Nome do Titular e os métodos Depósito, Saque e Saldo Total.
-4) Crie um programa que receba a conta corrente e deposite e saque valores, ao final imprimindo o saldo existente.
-5) Crie uma classe que calcule a área de uma circunferência, recebendo com valor inicial o raio
+*4) Crie um programa que receba a conta corrente e deposite e saque valores, ao final imprimindo o saldo existente.
+*5) Crie uma classe que calcule a área de uma circunferência, recebendo com valor inicial o raio
 6) Crie uma classe para Cifra de César, devendo ter um método criptografia e receba como valor inicial uma mensagem e o valor constante.
     Cifra de César é uma das criptografias mais antigas conhecidas, onde a chave está no valor constante, para cada letra do alfabeto atribuí-se um número
     (exemplo: A=1;B=2;C=3,etc), então para cada letra da mensagem, soma-se o valor correspondente a esta letra ao valor constante,
@@ -35,6 +36,7 @@ public class Exercicio5 {
             System.out.println("|| [0] -  Sair                      ||");
             System.out.println("|| [1] -  IMC                       ||");
             System.out.println("|| [2] -  Banco                     ||");
+            System.out.println("|| [3] -  Raio                      ||");
             System.out.println("======================================");
             Banco banco = new Banco(00,00,0.0,"");
             Seta();
@@ -46,7 +48,7 @@ public class Exercicio5 {
                 }
                 case 1:{
                     Boolean condi = false;
-                    String validCondi;
+                    Integer validCondi;
                     while (condi!=true){
                         String nome,dataNascimento;
                         Double peso,altura;
@@ -58,9 +60,9 @@ public class Exercicio5 {
                         Seta();
                         nome = scanner.next();
     
-                        peso = ValidDouble(" Peso ");
+                        peso = ValidDouble(" Digite o Peso pessoa ");
     
-                        altura = ValidDouble(" Altura ");
+                        altura = ValidDouble(" Digite o Altura pessoa ");
     
                         System.out.println("Digite a data de nascimento da pessoa ");
                         Seta();
@@ -69,63 +71,85 @@ public class Exercicio5 {
                         Pessoa pessoa = new Pessoa(nome,peso,altura,dataNascimento);
                         pessoa.IMC();
 
-                        System.out.println("Deseja continuar? [S] - Sim [N] - Não");
+                        System.out.println("Deseja continuar? [0] - Sim [1] - Não");
                         Seta();
-                        validCondi = scanner.next();
-                        validCondi = validCondi.toUpperCase();
-                        if (validCondi=="S") {
+                        validCondi = scanner.nextInt();
+                        if (validCondi==1) {
                             condi = true;
                         }
                     }
                     break;
                 }
                 case 2:{
+                    Integer escolha;
+                    do{
+                        System.out.println("======================================");
+                        System.out.println("||    Bem Vindo Ao Banco Branco     ||");
+                        System.out.println("||==================================||");
+                        System.out.println("|| Selecione uma das opçoes a baixo ||");
+                        System.out.println("|| [0] -  Retornar                  ||");
+                        System.out.println("|| [1] -  Cadastrar                 ||");
+                        System.out.println("|| [2] -  Saque                     ||");
+                        System.out.println("|| [3] -  Deposito                  ||");
+                        System.out.println("======================================");
+                        escolha = scanner.nextInt();
+                    switch(escolha){
+                        case 0:{
+                            System.out.println("Retornando ao menu anterior....");
+                            break;
+                        }
+                        case 1:{// todo: Cadastro
+
+                            System.out.println("Digite o nome da Do titular da conta ");
+                            Seta();
+                            banco.nomeTitular = scanner.next();
+        
+                            banco.numeroConta = ValidInt(" Digite o numero da Conta ");
+        
+                            banco.agencia = ValidInt(" Digite a agencia ");
+
+                            banco.saldo = 0.0;                                
+                            break;
+                        }
+                        case 2:{// todo: Saque
+                            Double valor = ValidDouble("Digite o valor a ser Sacado ");
+                            banco.SaldoTotal();
+                            banco.Operacao(valor, 2);
+                            break;
+                        }
+                        case 3:{// todo: Deposito
+                            Double valor = ValidDouble("Digite o valor a ser Depositado ");
+                            banco.SaldoTotal();
+                            banco.Operacao(valor, 1);
+                            break;
+                        }
+
+                    }}while(escolha!=0);
+                    break;
+                }
+                case 3:{
                     Boolean condi = false;
-                    String validCondi;
+                    Integer validCondi;
                     while (condi!=true){
-                        Integer escolha;
+                        Double valor=0.0;
+                        System.out.println("======================================");
+                        System.out.println("||    Bem Vindo Ao Calculo de Area   ||");
+                        System.out.println("======================================");
                         
-                        do{
-                            System.out.println("======================================");
-                            System.out.println("||    Bem Vindo Ao Banco Branco     ||");
-                            System.out.println("||==================================||");
-                            System.out.println("|| Selecione uma das opçoes a baixo ||");
-                            System.out.println("|| [0] -  Sair                      ||");
-                            System.out.println("|| [1] -  Cadastrar                 ||");
-                            System.out.println("|| [2] -  Saque                     ||");
-                            System.out.println("|| [3] -  Deposito                  ||");
-                            System.out.println("======================================");
-                            escolha = scanner.nextInt();
-                        switch(escolha){
-                            case 0:{
-                                System.out.println("Saindo...");
-                                break;
-                            }
-                            case 1:{// todo: Cadastro
+                        valor = ValidDouble(" Digite o raio do circulo ");
+                        Raio raio = new Raio(valor);
 
-                                System.out.println("Digite o nome da Do titular da conta ");
-                                Seta();
-                                banco.nomeTitular = scanner.next();
-            
-                                banco.numeroConta = ValidInt(" Digite o numero da Conta ");
-            
-                                banco.agencia = ValidInt(" Digite a agencia ");
-
-                                banco.saldo = 0.0;                                
-                                break;
-                            }
-                            case 2:{// todo: Saque
-                                banco.SaldoTotal();
-                            }
-
-                        }}while(escolha!=0);
-
-                        System.out.println("Deseja continuar? [S] - Sim [N] - Não");
+                        Double calculo = raio.Calculo();
+                        System.out.println("O calculo de Area da circulo é: "+calculo);
+                        System.out.println("");
+                        System.out.println("Deseja continuar? [0] - Sim [1] - Não");
                         Seta();
-                        validCondi = scanner.next();
-                        validCondi = validCondi.toUpperCase();
-                        if (validCondi=="S") {
+                        validCondi = scanner.nextInt();
+                        
+                        if (validCondi==1) {
+                            System.out.println("Deseja ");
                             condi = true;
+                            break;
                         }
                     }
                     break;
@@ -138,11 +162,11 @@ public class Exercicio5 {
         Scanner scanner = new Scanner(System.in);
         Double valor=0.0;
         try {
-            System.out.println("Digite o "+txt+" da pessoa ");
+            System.out.println(txt);
             Seta();
             valor = scanner.nextDouble();
         }catch (Throwable t) {
-            System.out.println("Ocorreu uma exceção: "+ t.getMessage());
+            System.out.println("Digite um numero correto ");
             valor = ValidDouble(txt);
         }
         return valor;
@@ -155,7 +179,7 @@ public class Exercicio5 {
             Seta();
             valor = scanner.nextInt();
         }catch (Throwable t) {
-            System.out.println("Ocorreu uma exceção: "+ t.getMessage());
+            System.out.println("Digite um numero correto");
             valor = ValidInt(txt);
         }
         return valor;
