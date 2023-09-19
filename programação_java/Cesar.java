@@ -10,11 +10,50 @@ public class Cesar {
 
     String mensagem;
     Integer valorConstante;
-    String[] alfabeto = {};
 
     public Cesar(Integer valorConstante,String mensagem){
-       this.alfabeto = {"a", "b", "c", "d", "e","f", "g", "h", "i", "j", "k", "l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-        this.mensagem = mensagem;
+        this.mensagem = mensagem.toLowerCase();
         this.valorConstante = valorConstante;
+    }
+    public String Embaralhador(){
+        char[] alfabeto = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+        Integer[] codigosLetras = {};
+        char[] temporario ={};
+        Integer temp = 0;
+        int y=0;
+        String txt ="";
+        while(){
+            char caractere = this.mensagem.charAt(i);
+            if(caractere==alfabeto[i]){
+                temp = i+this.valorConstante;
+                if(temp>25){
+                    temp= temp/25;
+                }
+                temporario[y] = alfabeto[temp];
+                y++;
+            }
+        }
+        txt = new String(temporario);
+        return(txt);
+    }
+    public String Desembaralhador(String codigo){
+        char[] alfabeto = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+        int i = 0;
+        for(int y=0;y<26;y++){
+            i++;
+            char caractere = codigo.charAt(i);
+            if(caractere==alfabeto[i]){
+                temp = i-this.valorConstante;
+                if(temp>25){
+                    temp= temp/25;
+                }
+                temporario[y] = alfabeto[temp];
+                y++;
+            }
+            if(i==26){
+                i=0;
+            }
+        }
+        return(new String(alfabeto);
     }
 }

@@ -37,6 +37,7 @@ public class Exercicio5 {
             System.out.println("|| [1] -  IMC                       ||");
             System.out.println("|| [2] -  Banco                     ||");
             System.out.println("|| [3] -  Raio                      ||");
+            System.out.println("|| [4] -  Cifra cesar               ||");
             System.out.println("======================================");
             Banco banco = new Banco(00,00,0.0,"");
             Seta();
@@ -128,6 +129,33 @@ public class Exercicio5 {
                     break;
                 }
                 case 3:{
+                    Boolean condi = false;
+                    Integer validCondi;
+                    while (condi!=true){
+                        Double valor=0.0;
+                        System.out.println("======================================");
+                        System.out.println("||    Bem Vindo Ao Calculo de Area   ||");
+                        System.out.println("======================================");
+                        
+                        valor = ValidDouble(" Digite o raio do circulo ");
+                        Raio raio = new Raio(valor);
+
+                        Double calculo = raio.Calculo();
+                        System.out.println("O calculo de Area da circulo é: "+calculo);
+                        System.out.println("");
+                        System.out.println("Deseja continuar? [0] - Sim [1] - Não");
+                        Seta();
+                        validCondi = scanner.nextInt();
+                        
+                        if (validCondi==1) {
+                            System.out.println("Deseja ");
+                            condi = true;
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case 4:{
                     Boolean condi = false;
                     Integer validCondi;
                     while (condi!=true){
