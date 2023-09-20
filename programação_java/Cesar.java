@@ -17,26 +17,32 @@ public class Cesar {
     }
     public String Embaralhador(){
         char[] alfabeto = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-        Integer[] codigosLetras = {};
-        char[] temporario ={};
-        Integer temp = 0;
-        int y=0;
-        String txt ="";
-        while(){
+        ArrayList<Character> temporario = new ArrayList<>();
+        Integer temp;
+        int y=0,i=0;
+        String txt;
+        while(temporario.size()!=this.mensagem.length()){
             char caractere = this.mensagem.charAt(i);
             if(caractere==alfabeto[i]){
                 temp = i+this.valorConstante;
                 if(temp>25){
                     temp= temp/25;
                 }
-                temporario[y] = alfabeto[temp];
+                temporario.add(alfabeto[temp]);
                 y++;
             }
+            i++;
         }
-        txt = new String(temporario);
+        StringBuilder builder = new StringBuilder();
+        
+        for (char c : temporario) {
+            builder.append(c);
+        }
+        
+        txt = builder.toString();
         return(txt);
     }
-    public String Desembaralhador(String codigo){
+   /* public String Desembaralhador(String codigo){
         char[] alfabeto = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
         int i = 0;
         for(int y=0;y<26;y++){
@@ -55,5 +61,5 @@ public class Cesar {
             }
         }
         return(new String(alfabeto);
-    }
+    }*/
 }

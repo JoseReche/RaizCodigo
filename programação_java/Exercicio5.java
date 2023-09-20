@@ -158,21 +158,22 @@ public class Exercicio5 {
                 case 4:{
                     Boolean condi = false;
                     Integer validCondi;
+
                     while (condi!=true){
-                        Double valor=0.0;
+                        Integer valor;
+                        String texto,mensagem;
                         System.out.println("======================================");
                         System.out.println("||    Bem Vindo Ao Calculo de Area   ||");
                         System.out.println("======================================");
-                        
-                        valor = ValidDouble(" Digite o raio do circulo ");
-                        Raio raio = new Raio(valor);
-
-                        Double calculo = raio.Calculo();
-                        System.out.println("O calculo de Area da circulo é: "+calculo);
-                        System.out.println("");
-                        System.out.println("Deseja continuar? [0] - Sim [1] - Não");
+                        valor = ValidInt(" Digite o valor constante ");
+                        System.out.println("Digite a mensagem a ser criptografada");
                         Seta();
-                        validCondi = scanner.nextInt();
+                        texto = scanner.next();
+                        Cesar cesar = new Cesar(valor,texto);
+                        mensagem = cesar.Embaralhador();
+                        System.out.println(mensagem);
+                        System.out.println("");
+                        validCondi = ValidInt("Deseja continuar? [0] - Sim [1] - Não");
                         
                         if (validCondi==1) {
                             System.out.println("Deseja ");
