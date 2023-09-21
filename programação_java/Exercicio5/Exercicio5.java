@@ -1,9 +1,10 @@
-package programação_java;
+package programação_java.Exercicio5;
 
-import programação_java.Raio;
-import programação_java.Pessoa;
-import programação_java.Banco;
 import java.util.Scanner;
+
+import programação_java.Exercicio5.Banco;
+import programação_java.Exercicio5.Pessoa;
+import programação_java.Exercicio5.Raio;
 /*
 *1) Crie uma classe que represente uma Pessoa, devendo ter as propriedades Nome, Peso, Altura e Data de Nascimento e o método IMC, que retornará o valor do IMC. 
 *2) Crie um programa que receba a pessoa criada e verifique qual o IMC. 

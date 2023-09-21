@@ -1,4 +1,4 @@
-package programação_java;
+package programação_java.Exercicio5;
 
 public class Pessoa {
         String nome;
