@@ -1,4 +1,4 @@
-package programação_java;
+package programação_java.Exercicios;
 import java.util.Scanner;
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package programação_java.Exercicio5;
+package programação_java.Exercicios.Exercicio5;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,5 @@
-package programação_java;
+package programação_java.Exercicios;
 import java.util.Scanner;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction;
 
 public class exercicio01 {
     public static void main(String[] args) {

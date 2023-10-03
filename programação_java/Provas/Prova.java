@@ -18,7 +18,7 @@
     Utilize estruturas de controle "if", "for" e "while" para realizar as operações de acordo com as escolhas dos usuários.
 
     Implemente tratamento de erros para garantir que os conceitos inseridas sejam `char` válidos.*/
-package programação_java;
+package programação_java.Provas;
 import java.util.ArrayList;
 import java.util.Scanner;
 
