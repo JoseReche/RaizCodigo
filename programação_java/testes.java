@@ -1,7 +1,5 @@
 package programação_java;
 
-import java.util.ArrayList;
-
 public class testes {
     public static void main(String[] args){
         for (int i = 0; i <5; i++) {
