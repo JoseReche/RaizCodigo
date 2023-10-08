@@ -31,6 +31,7 @@ public class Sistema {
     public static String vermelho = "\u001B[31m";
     public static String verde = "\u001B[32m";
     public static String roxo = "\u001B[34m";
+    public static String amarelo = "\u001B[33m";
     public static String reset = "\u001B[0m";
     public static void main(String[] args) {
 
@@ -39,7 +40,7 @@ public class Sistema {
 
         do {
             System.out.println("╔══════════════════════════════════════╗");
-            System.out.println("║"+roxo+"         BIBLÍOTECA MUNICIPAL         "+reset+"║");
+            System.out.println("║"+roxo+"         BIBLIOTECA MUNICIPAL         "+reset+"║");
             System.out.println("╠══════════════════════════════════════╣");
             System.out.println("║ [1] - Criar autor                    ║");
             System.out.println("║ [2] - Criar livro                    ║");
@@ -64,29 +65,27 @@ public class Sistema {
                     break;
                 }
                 case 3: {
-                    System.out.println("╔══════════════════════════════════════╗");
-                    System.out.println("║"+roxo+"          CRIAR BIBLIOTECA            "+reset+"║");
-                    System.out.println("╚══════════════════════════════════════╝");
-                    String nomeBiblioteca = ValidString("Digite o nome da biblioteca",scanner);
-                    new Biblioteca(nomeBiblioteca);
+                    CriarBiblioteca(scanner);
                     break;
                 }
                 case 4: {
-                    System.out.println("╔══════════════════════════════════════╗");
-                    System.out.println("║"+roxo+"          ADICIONAR LIVRO             "+reset+"║");
-                    System.out.println("╚══════════════════════════════════════╝");
+                    AdicionarLivro(scanner);
+                    break;
+                }
+                case 5: {
+                    
                     int posicaoBiblioteca = -1;
                     do {
                         if(Biblioteca.bibliotecas.size()<1){
-                            System.out.println("╔══════════════════════════════════════╗");
-                            System.out.println("║"+roxo+"          CRIAR BIBLIOTECA            "+reset+"║");
-                            System.out.println("╚══════════════════════════════════════╝");
-                            String nomeBiblioteca = ValidString("Digite o nome da biblioteca",scanner);
-                            new Biblioteca(nomeBiblioteca);
+                            System.out.println(amarelo+"Antes de emprestar precisa criar uma biblioteca"+reset);
+                            CriarBiblioteca(scanner);
                         }
-                        Biblioteca.listarBibliotecas();
+                        System.out.println("╔══════════════════════════════════════╗");
+                        System.out.println("║"+roxo+"           EMPRESTARLIVRO             "+reset+"║");
+                        System.out.println("╚══════════════════════════════════════╝");
+                        Biblioteca.listarBibliotecas(0);
                         try {
-                            posicaoBiblioteca = ValidInt("Escolha uma Biblioteca",scanner);
+                            posicaoBiblioteca = ValidInt("Selecione uma biblioteca",scanner);
                             if (posicaoBiblioteca >= Biblioteca.bibliotecas.size()) {
                                 throw new Exception("Biblioteca inválida");
                             }
@@ -100,53 +99,19 @@ public class Sistema {
 
                     int posicaoLivro = -1;
                     do {
-                        if (Livro.livros.size()<1){
-                            
+                        if(biblioteca.livros.size()<1){
+                            System.out.println(amarelo+"Biblioteca sem Livros"+reset);
+                            CriarLivro(scanner);
+                            AdicionarLivro(scanner);
                         }
-                        Livro.listarLivros();
-                        try {
-                            posicaoLivro = scanner.nextInt();
-                            if (posicaoLivro >= Livro.livros.size()) {
-                                throw new Exception("Livro inválido");
-                            }
-                        } catch (Exception e) {
-                            System.out.println("Livro inválido");
-                            posicaoLivro = -1;
-                        }
-                    } while (posicaoLivro < 0);
-
-                    Livro livro = Livro.livros.get(posicaoLivro);
-
-                    biblioteca.adicionarLivro(livro);
-                    break;
-                }
-                case 5: {
-                    int posicaoBiblioteca = -1;
-                    do {
-                        Biblioteca.listarBibliotecas();
-                        try {
-                            posicaoBiblioteca = scanner.nextInt();
-                            if (posicaoBiblioteca >= Biblioteca.bibliotecas.size()) {
-                                throw new Exception("Biblioteca inválida");
-                            }
-                        } catch (Exception e) {
-                            System.out.println("Biblioteca inválida");
-                            posicaoBiblioteca = -1;
-                        }
-                    } while (posicaoBiblioteca < 0);
-
-                    Biblioteca biblioteca = Biblioteca.bibliotecas.get(posicaoBiblioteca);
-
-                    int posicaoLivro = -1;
-                    do {
                         biblioteca.listarLivros();
                         try {
-                            posicaoLivro = scanner.nextInt();
-                            if (posicaoLivro >= Livro.livros.size()) {
+                            posicaoLivro = ValidInt("Escolha um Livro",scanner);
+                            if (posicaoLivro >Livro.livros.size()) {
                                 throw new Exception("Livro inválido");
                             }
                         } catch (Exception e) {
-                            System.out.println("Livro inválido");
+                            System.out.println(e);
                             posicaoLivro = -1;
                         }
                     } while (posicaoLivro < 0);
@@ -157,12 +122,14 @@ public class Sistema {
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
-
                     break;
                 } case 6: {
                     int posicaoBiblioteca = -1;
                     do {
-                        Biblioteca.listarBibliotecas();
+                        if(Biblioteca.bibliotecas.size()<1){
+                            
+                        }
+                        Biblioteca.listarBibliotecas(1);
                         try {
                             posicaoBiblioteca = scanner.nextInt();
                             if (posicaoBiblioteca >= Biblioteca.bibliotecas.size()) {
@@ -180,7 +147,7 @@ public class Sistema {
                     do {
                         biblioteca.listarLivros();
                         try {
-                            posicaoLivro = scanner.nextInt();
+                            posicaoLivro = ValidInt("Escolha um livro",scanner);
                             if (posicaoLivro >= Livro.livros.size()) {
                                 throw new Exception("Livro inválido");
                             }
@@ -206,6 +173,55 @@ public class Sistema {
         } while (op != 0);
         scanner.close();
     }
+    public static void AdicionarLivro(Scanner scanner){
+        int posicaoBiblioteca = -1;
+        do {
+            if(Biblioteca.bibliotecas.size()<1){
+                System.out.println(amarelo+"Antes de Adicionar um Livro precisa criar uma biblioteca"+reset);
+                CriarBiblioteca(scanner);
+            }
+            System.out.println("╔══════════════════════════════════════╗");
+            System.out.println("║"+roxo+"          ADICIONAR LIVRO             "+reset+"║");
+            System.out.println("╚══════════════════════════════════════╝");
+            Biblioteca.listarBibliotecas(1);
+            try {
+                posicaoBiblioteca = ValidInt("Escolha uma Biblioteca",scanner);
+                if (posicaoBiblioteca >= Biblioteca.bibliotecas.size()) {
+                    throw new Exception("Biblioteca inválida");
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+                posicaoBiblioteca = -1;
+            }
+        } while (posicaoBiblioteca < 0);
+        Biblioteca biblioteca = Biblioteca.bibliotecas.get(posicaoBiblioteca);
+        int posicaoLivro = -1;
+        do {
+            if (Livro.livros.size()<1){
+                System.out.println(amarelo+"Antes de Adicionar um livro precisa criar um livro"+reset);
+                CriarLivro(scanner);
+            }
+            Livro.listarLivros();
+            try {
+                posicaoLivro = ValidInt("Escolha um livro",scanner);
+                if (posicaoLivro >= Livro.livros.size()) {
+                    throw new Exception("Livro inválido");
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+                posicaoLivro = -1;
+            }
+        } while (posicaoLivro < 0);
+        Livro livro = Livro.livros.get(posicaoLivro);
+        biblioteca.adicionarLivro(livro);
+    }
+    public static void CriarBiblioteca(Scanner scanner) { 
+        System.out.println("╔══════════════════════════════════════╗");
+        System.out.println("║"+roxo+"          CRIAR BIBLIOTECA            "+reset+"║");
+        System.out.println("╚══════════════════════════════════════╝");
+        String nomeBiblioteca = ValidString("Digite o nome da biblioteca",scanner);
+        new Biblioteca(nomeBiblioteca);
+    }
     public static void CriarAutor(Scanner scanner){
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("║"+roxo+"             CRIAR AUTOR              "+reset+"║");
@@ -214,19 +230,17 @@ public class Sistema {
         new Autor(nome);
     }
     public static void CriarLivro(Scanner scanner){
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║"+roxo+"             CRIAR LIVRO              "+reset+"║");
-        System.out.println("╚══════════════════════════════════════╝");
-        String titulo = ValidString("Digite o Título",scanner);
         int posicaoAutor = -1;
+        String titulo;
         do {
             if(Autor.autores.size()<1){
-                System.out.println("╔══════════════════════════════════════╗");
-                System.out.println("║"+roxo+"             CRIAR AUTOR              "+reset+"║");
-                System.out.println("╚══════════════════════════════════════╝");
-                String nome = ValidString("Digite o nome do Autor",scanner);
-                new Autor(nome);
+                System.out.println(amarelo+"Antes de criar um livro precisa criar um autor"+reset);
+                CriarAutor(scanner);
             }
+            System.out.println("╔══════════════════════════════════════╗");
+            System.out.println("║"+roxo+"             CRIAR LIVRO              "+reset+"║");
+            System.out.println("╚══════════════════════════════════════╝");
+            titulo = ValidString("Digite o Título",scanner);
             Autor.listarAutores();
             try {
                 posicaoAutor = ValidInt("Escolha o autor",scanner);
@@ -286,4 +300,5 @@ public class Sistema {
     public static void Seta(){
         System.out.print("=>  ");
     }
+    
 }

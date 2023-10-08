@@ -31,15 +31,17 @@ public class Biblioteca {
         }
     }
 
-    public static void listarBibliotecas() {
+    public static void listarBibliotecas(int p1) {
         
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("║"+verde+"             BIBLIOTECAS              "+reset+"║");
         System.out.println("╚══════════════════════════════════════╝");
         for(int i = 0; i < bibliotecas.size(); i++) {
             Biblioteca biblioteca = bibliotecas.get(i);
-            System.out.println(i + " - " + biblioteca.toString());
-            biblioteca.listarLivros();
+            System.out.println(i + biblioteca.toString());
+            if(p1==1){
+                biblioteca.listarLivros();
+            }
         }
     }
 }
