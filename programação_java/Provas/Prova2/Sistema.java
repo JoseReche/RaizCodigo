@@ -173,6 +173,7 @@ public class Sistema {
         } while (op != 0);
         scanner.close();
     }
+    //todo: Metodos------------------------------------------
     public static void AdicionarLivro(Scanner scanner){
         int posicaoBiblioteca = -1;
         do {

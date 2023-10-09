@@ -22,7 +22,7 @@ package programação_java.Provas;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Prova {
+public class Prova1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in); // Estrutura para Usar o metodo Scanner
 
