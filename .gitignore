@@ -24,4 +24,4 @@ hs_err_pid*
 replay_pid*
 ----------------------------------------------------------------------------------------
                 Lembrar
-toda propriedade de um objedo deve ser privada
+toda propriedade de um objeto deve ser privada
