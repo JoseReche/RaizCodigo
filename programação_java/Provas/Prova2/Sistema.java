@@ -104,9 +104,12 @@ public class Sistema {
                             CriarLivro(scanner);
                             AdicionarLivro(scanner);
                         }
+                        System.out.println("╔══════════════════════════════════════╗");
+                        System.out.println("║"+roxo+"           EMPRESTARLIVRO             "+reset+"║");
+                        System.out.println("╚══════════════════════════════════════╝");
+                        posicaoLivro = ValidInt("Escolha um Livro",scanner);
                         biblioteca.listarLivros();
                         try {
-                            posicaoLivro = ValidInt("Escolha um Livro",scanner);
                             if (posicaoLivro >Livro.livros.size()) {
                                 throw new Exception("Livro inválido");
                             }
@@ -136,7 +139,7 @@ public class Sistema {
                                 throw new Exception("Biblioteca inválida");
                             }
                         } catch (Exception e) {
-                            System.out.println("Biblioteca inválida");
+                            System.out.println(e);
                             posicaoBiblioteca = -1;
                         }
                     } while (posicaoBiblioteca < 0);
@@ -152,7 +155,7 @@ public class Sistema {
                                 throw new Exception("Livro inválido");
                             }
                         } catch (Exception e) {
-                            System.out.println("Livro inválido");
+                            System.out.println(e);
                             posicaoLivro = -1;
                         }
                     } while (posicaoLivro < 0);
