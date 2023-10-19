@@ -1,3 +1,17 @@
+
+//Array vetor
+let pessoas =[];
+pessoas[0] ='Marcelo';
+pessoas[1] ='José';
+pessoas[40] ='mariano';
+pessoas[50] ='carlos';
+console.log(pessoas);
+pessoas.push('Maria');
+console.log(pessoas);
+pessoas.unshift('petri');
+console.log(pessoas);
+pessoas.shift();
+
 //estrutura de repetição
 /*
 for (var i = 0; i <10; i++) {
@@ -15,7 +29,7 @@ do {
 } while (i<10);
 */
 
-
+/*
 function somar(n1, n2) {
     alert('somar: ' +(n1 + n2));
 }
