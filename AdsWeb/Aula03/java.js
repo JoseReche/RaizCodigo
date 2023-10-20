@@ -1,6 +1,23 @@
+//Objeto
+let pessoas = [];
 
+let pesso ={
+    nome: 'Marcelo',
+    idade: 44
+}
+
+let pesso1 ={
+    nome: 'Marcelo',
+    idade: 44
+}
+pessoas.push(pesso);
+pessoas.push(pesso1);
+console.log(pessoas);
+
+pessoas.push({altura: 1.80, sexo:'M'});
+console.log(pessoas);
 //Array vetor
-let pessoas =[];
+/*let pessoas =[];
 pessoas[0] ='Marcelo';
 pessoas[1] ='José';
 pessoas[40] ='mariano';
