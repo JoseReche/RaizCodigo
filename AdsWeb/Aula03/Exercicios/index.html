@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Exercicio</title>
+</head>
+<body>
+
+    <Script>
+        let fem = [];
+        let masc = [];
+
+        fem.push(2);
+        fem.push(1.5);
+        fem.push(1.5);
+        fem.push(3);
+        fem.push(0.5);
+        console.log(fem);
+
+        masc.push(2);
+        masc.push(2.5);
+        masc.push(3);
+        masc.push(2);
+        masc.push(1.5);
+        console.log(masc);
+        let i=0;
+        let contagem = 0;
+        for(;i<fem.length; i++){
+            let p1 = fem[i];
+            contagem =contagem + p1;
+        }
+        contagem = contagem /fem.length;
+        console.log(contagem);
+
+        let p2=0;
+        i=0;
+        for(;i<fem.length; i++){
+            let p1 = fem[i];
+            if(p1>p2){
+                p2=p1;
+            }
+        }
+        console.log(p2);
+
+        console.log(masc.length);
+
+
+    </Script>
+</body>
+</html>
