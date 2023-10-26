@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peso idade (Exercicio05)</title>
+</head>
+<body>
+    
+    <script>
+        function calcularEImprimirEstatisticas() {
+        let totalHomens = 0;
+        let totalMulheres = 0;
+        let somaIdadesHomens = 0;
+        let somaPesosMulheres = 0;
+
+        for (let i = 1; i <= 10; i++) {
+            const idade = parseFloat(prompt(`Informe a idade da pessoa ${i}:`));
+            const peso = parseFloat(prompt(`Informe o peso da pessoa ${i}:`));
+            const sexo = prompt(`Informe o sexo da pessoa ${i} (M para masculino, F para feminino):`).toUpperCase();
+
+            if (sexo === "M") {
+            totalHomens++;
+            somaIdadesHomens += idade;
+            } else if (sexo === "F") {
+            totalMulheres++;
+            somaPesosMulheres += peso;
+            } else {
+            alert("Sexo não reconhecido. Use M para masculino e F para feminino.");
+            i--; // Decrementa o contador para repetir a entrada para a mesma pessoa.
+            }
+        }
+
+        const mediaIdadesHomens = totalHomens > 0 ? somaIdadesHomens / totalHomens : 0;
+        const mediaPesosMulheres = totalMulheres > 0 ? somaPesosMulheres / totalMulheres : 0;
+
+        console.log(`Total de homens: ${totalHomens}`);
+        console.log(`Total de mulheres: ${totalMulheres}`);
+        console.log(`Média das idades dos homens: ${mediaIdadesHomens}`);
+        console.log(`Média dos pesos das mulheres: ${mediaPesosMulheres}`);
+        }
+
+        calcularEImprimirEstatisticas();
+
+    </script>
+</body>
+</html>

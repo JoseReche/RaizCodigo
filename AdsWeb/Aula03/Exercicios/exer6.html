@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculadora de Reajuste Salarial (Exercicio06)</title>
+    </head>
+    <body>
+        <h1>Calculadora de Reajuste Salarial</h1>
+        <p>Informe o salário atual do colaborador:</p>
+        <input type="number" id="salarioAtual">
+        <button onclick="calcularReajuste()">Calcular</button>
+        <p id="resultado"></p>
+
+        <script>
+            function calcularReajuste() {
+                const salarioAtual = parseFloat(document.getElementById("salarioAtual").value);
+
+                if (!isNaN(salarioAtual)) {
+                    let novoSalario;
+
+                    if (salarioAtual <= 280) {
+                        novoSalario = salarioAtual * 1.2; // Aumento de 20%
+                    } else if (salarioAtual > 280 && salarioAtual <= 700) {
+                        novoSalario = salarioAtual * 1.15; // Aumento de 15%
+                    } else if (salarioAtual > 700 && salarioAtual <= 1500) {
+                        novoSalario = salarioAtual * 1.1; // Aumento de 10%
+                    } else {
+                        novoSalario = salarioAtual * 1.05; // Aumento de 5%
+                    }
+
+                    const aumento = novoSalario - salarioAtual;
+                    document.getElementById("resultado").textContent = `Salário atual: R$ ${salarioAtual.toFixed(2)}\nNovo salário com reajuste: R$ ${novoSalario.toFixed(2)}\nAumento salarial: R$ ${aumento.toFixed(2)}`;
+                } else {
+                    document.getElementById("resultado").textContent = "Informe um valor de salário válido.";
+                }
+            }
+        </script>
+    </body>
+</html>
