@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercicio DOM</title>
+    <style>
+        .destaque { 
+            background-color: aqua;
+        }
+    </style>
 </head>
 <body>
     <h1 id="titulo">Olá Mundo!!</h1>
@@ -11,7 +16,7 @@
     <p class="texto">Este é o segundo paragrafo</p>
     <div id="novaDiv"></div>
     <a id="meuLink" href="https://www.google.com/webhp?hl=pt-BR&sa=X&ved=0ahUKEwiyp9ONgpWCAxXvILkGHUqvBa4QPAgJ">google</a>
-
+   
     <script>
         //a)
         let titulo = document.getElementById("titulo");
@@ -36,6 +41,10 @@
         let novoParagrafo = document.createElement('p');
         novoParagrafo.innerText = 'Este paragrafo foi criado dinamicamente!!!';
 
+        novoParagrafo.classList.add('destaque');
+        novoParagrafo.classList.remove('destaque');
+        novoParagrafo.classList.toggle('destaque');
+
         let novaDiv = document.getElementById('novaDiv');
         novaDiv.appendChild(novoParagrafo);
 
@@ -43,6 +52,8 @@
         let link = document.getElementById('meulink');
         link.setAttribute('href','https://www.terra.com.br');
         console.log(link.getAttribute('href'));
+
+        
 
     </script>
 </body>
