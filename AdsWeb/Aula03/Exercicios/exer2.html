@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Análise de Pesquisa (Exercicio02)</title>
+        <script>
+            let idade = [];
+            let quest = [];
+
+            idade.push(20);
+            idade.push(20);
+            idade.push(15);
+            idade.push(14);
+            idade.push(12);
+            idade.push(19);
+            idade.push(20);
+            idade.push(15);
+            idade.push(16);
+            idade.push(15);
+            idade.push(16);
+            idade.push(30);
+            idade.push(35);
+            idade.push(20);
+            idade.push(20);
+
+            quest.push(1);
+            quest.push(3);
+            quest.push(2);
+            quest.push(1);
+            quest.push(2);
+            quest.push(1);
+            quest.push(2);
+            quest.push(3);
+            quest.push(3);
+            quest.push(2);
+            quest.push(3);
+            quest.push(1);
+            quest.push(2);
+            quest.push(1);
+            quest.push(1);
+
+            function calcularEExibirResultados() {
+                let contagem = 0;
+                let p2 = 0;
+                let i = 0;
+                for (; i < idade.length; i++) {
+                    let p1 = idade[i];
+                    if (quest[i] === 3) {
+                        p2++;
+                        contagem = contagem + p1;
+                    }
+                }
+                const mediaIdadesOtimo = p2 > 0 ? (contagem / p2).toFixed(0) : 0;
+                document.getElementById("mediaIdadesOtimo").textContent = `Média das idades dos que escolheram "Ótimo": ${mediaIdadesOtimo}`;
+
+                contagem = 0;
+                i = 0;
+                for (; i < quest.length; i++) {
+                    if (quest[i] === 1) {
+                        contagem++;
+                    }
+                }
+                document.getElementById("quantidadeRegular").textContent = `Quantidade de pessoas que responderam "Regular": ${contagem}`;
+
+                contagem = 0;
+                i = 0;
+                for (; i < quest.length; i++) {
+                    if (quest[i] === 2) {
+                        contagem++;
+                    }
+                }
+                const porcentagemBom = (contagem * 100) / quest.length;
+                document.getElementById("porcentagemBom").textContent = `Porcentagem de pessoas que responderam "Bom": ${porcentagemBom.toFixed(2)}%`;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Análise de Pesquisa</h1>
+        <p>Analise dos resultados da pesquisa:</p>
+
+        <button onclick="calcularEExibirResultados()">Calcular Resultados</button>
+
+        <p id="mediaIdadesOtimo"></p>
+        <p id="quantidadeRegular"></p>
+        <p id="porcentagemBom"></p>
+    </body>
+</html>

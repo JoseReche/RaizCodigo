@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data por Extenso (Exercicio07)</title>
+</head>
+<body>
+    <h1>Data por Extenso</h1>
+    <p>Informe uma data no formato dd/mm/aaaa:</p>
+    <input type="text" id="dataInput">
+    <button onclick="exibirDataPorExtenso()">Converter</button>
+    <p id="resultado"></p>
+
+    <script>
+        function exibirDataPorExtenso() {
+            const dataInput = document.getElementById("dataInput").value;
+            const resultado = document.getElementById("resultado");
+
+            const partes = dataInput.split('/');
+            if (partes.length !== 3) {
+                resultado.textContent = "Data inválida";
+                return;
+            }
+
+            const dia = partes[0];
+            const mes = partes[1];
+            const ano = partes[2];
+
+            const meses = [
+                "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+                "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
+            ];
+
+            if (mes >= 1 && mes <= 12) {
+                const mesPorExtenso = meses[mes - 1];
+                resultado.textContent = `${dia} de ${mesPorExtenso} de ${ano}`;
+            } else {
+                resultado.textContent = "Mês inválido";
+            }
+        }
+    </script>
+</body>
+</html>

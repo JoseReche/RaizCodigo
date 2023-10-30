@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Análise de Alturas (Exercicio01)</title>
+        <script>
+            let fem = [];
+            let masc = [];
+
+            fem.push(2);
+            fem.push(1.5);
+            fem.push(1.5);
+            fem.push(3);
+            fem.push(2);
+            fem.push(1.5);
+            fem.push(1.5);
+            fem.push(3);
+            fem.push(0.5);
+            fem.push(1.5);
+            fem.push(3);
+            fem.push(2);
+            fem.push(1.5);
+            fem.push(1.5);
+            fem.push(3.5);
+
+            masc.push(2);
+            masc.push(2.5);
+            masc.push(3.5);
+            masc.push(2);
+            masc.push(1.5);
+            masc.push(2);
+            masc.push(2.5);
+            masc.push(3.5);
+            masc.push(2);
+            masc.push(1.5);
+            masc.push(2);
+            masc.push(1.5);
+            masc.push(2);
+            masc.push(2.5);
+            masc.push(3.5);
+
+            function calcularEExibirResultados() {
+                // Cálculo da média das alturas das mulheres
+                let somaAlturasMulheres = 0;
+                for (let i = 0; i < fem.length; i++) {
+                    somaAlturasMulheres += fem[i];
+                }
+                const mediaAlturasMulheres = (somaAlturasMulheres / fem.length).toFixed(2);
+                document.getElementById("mediaAlturasMulheres").textContent = `Média das alturas das mulheres: ${mediaAlturasMulheres} m`;
+
+                // Maior e menor altura do grupo
+                let maiorAltura = 0;
+                let menorAltura = 10;
+                for (let i = 0; i < fem.length; i++) {
+                    if (fem[i] > maiorAltura) {
+                        maiorAltura = fem[i];
+                    }
+                    if (fem[i] < menorAltura) {
+                        menorAltura = fem[i];
+                    }
+                }
+                for (let i = 0; i < masc.length; i++) {
+                    if (masc[i] > maiorAltura) {
+                        maiorAltura = masc[i];
+                    }
+                    if (masc[i] < menorAltura) {
+                        menorAltura = masc[i];
+                    }
+                }
+                document.getElementById("maiorAltura").textContent = `Maior altura do grupo: ${maiorAltura} m`;
+                document.getElementById("menorAltura").textContent = `Menor altura do grupo: ${menorAltura} m`;
+
+                // Número de Homens
+                const numeroHomens = masc.length;
+                document.getElementById("numeroHomens").textContent = `Número de homens: ${numeroHomens}`;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Análise de Alturas</h1>
+        <p>Analise das alturas das pessoas do grupo:</p>
+
+        <button onclick="calcularEExibirResultados()">Calcular Resultados</button>
+
+        <p id="mediaAlturasMulheres"></p>
+        <p id="maiorAltura"></p>
+        <p id="menorAltura"></p>
+        <p id="numeroHomens"></p>
+    </body>
+</html>

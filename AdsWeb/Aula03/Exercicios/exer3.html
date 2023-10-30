@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculadora de Soma de Números Pares e Primos (Exercicio03)</title>
+        <script>
+            function isPrime(num) {
+                if (num <= 1) {
+                    return false;
+                }
+                if (num <= 3) {
+                    return true;
+                }
+                if (num % 2 === 0 || num % 3 === 0) {
+                    return false;
+                }
+                for (let i = 5; i * i <= num; i += 6) {
+                    if (num % i === 0 || num % (i + 2) === 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function calcularSomaParesEPrimos() {
+                let somaPares = 0;
+                let somaPrimos = 0;
+
+                for (let i = 1; i <= 10; i++) {
+                    const numero = parseFloat(document.getElementById(`numero${i}`).value);
+                    if (!isNaN(numero)) {
+                        if (numero % 2 === 0) {
+                            somaPares += numero;
+                        }
+                        if (isPrime(numero)) {
+                            somaPrimos += numero;
+                        }
+                    }
+                }
+
+                document.getElementById("resultadoPares").textContent = `Soma dos números pares: ${somaPares}`;
+                document.getElementById("resultadoPrimos").textContent = `Soma dos números primos: ${somaPrimos}`;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Calculadora de Soma de Números Pares e Primos</h1>
+        <p>Informe 10 números e calcularemos a soma dos números pares e primos.</p>
+
+        <form>
+            <ul>
+                <!-- Crie 10 campos de entrada para os números -->
+                <li><input type="number" id="numero1"></li>
+                <li><input type="number" id="numero2"></li>
+                <li><input type="number" id="numero3"></li>
+                <li><input type="number" id="numero4"></li>
+                <li><input type="number" id="numero5"></li>
+                <li><input type="number" id="numero6"></li>
+                <li><input type="number" id="numero7"></li>
+                <li><input type="number" id="numero8"></li>
+                <li><input type="number" id="numero9"></li>
+                <li><input type="number" id="numero10"></li>
+            </ul>
+            <button type="button" onclick="calcularSomaParesEPrimos()">Calcular</button>
+        </form>
+
+        <!-- Resultados serão exibidos aqui -->
+        <p id="resultadoPares"></p>
+        <p id="resultadoPrimos"></p>
+    </body>
+</html>
