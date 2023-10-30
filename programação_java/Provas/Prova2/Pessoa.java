@@ -1,3 +1,4 @@
+
 package programação_java.Provas.Prova2;
 
 public class Pessoa {
@@ -7,12 +8,11 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getNome() {
         return this.nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String toString() {

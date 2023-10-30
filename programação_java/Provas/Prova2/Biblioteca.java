@@ -5,32 +5,46 @@ import java.util.ArrayList;
 public class Biblioteca {
     public static String verde = "\u001B[32m";
     public static String reset = "\u001B[0m";
-    public String nome;
-    public ArrayList<Livro> livros;
 
-    public static ArrayList<Biblioteca> bibliotecas = new ArrayList<>();
+    protected String nome;
+    protected ArrayList<Midia> midias;
+    protected static ArrayList<Biblioteca> bibliotecas = new ArrayList<>();
 
     public Biblioteca(String nome) {
         this.nome = nome;
-        this.livros = new ArrayList<>();
 
         bibliotecas.add(this);
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public ArrayList<Midia> getMidias() {
+        return midias;
+    }
+
+    public static ArrayList<Biblioteca> getBibliotecas() {
+        return bibliotecas;
+    }
+    
+    public void adicionarLivro(Livro livro) {
+        this.midi as.add(livro);
+    }
+    
+    public void listarMidias() {
+        for(int i = 0; i < this.midias.size(); i++) {
+            System.out.println(i + " - " + this.midias.get(i).toString());
+        }
+    }
+    
     public String toString() {
         return " => " + this.nome;
     }
-
-    public void adicionarLivro(Livro livro) {
-        this.livros.add(livro);
-    }
-
-    public void listarLivros() {
-        for(int i = 0; i < this.livros.size(); i++) {
-            System.out.println(i + " - " + this.livros.get(i).toString());
-        }
-    }
-
     public static void listarBibliotecas(int p1) {
         
         System.out.println("╔══════════════════════════════════════╗");
@@ -40,7 +54,7 @@ public class Biblioteca {
             Biblioteca biblioteca = bibliotecas.get(i);
             System.out.println(i + biblioteca.toString());
             if(p1==1){
-                biblioteca.listarLivros();
+                biblioteca.listarMidias();
             }
         }
     }

@@ -2,20 +2,34 @@ package programação_java.Provas.Prova2;
 
 import java.util.ArrayList;
 
-public class Autor {
+public class Autor extends Pessoa {
+    protected String nacionalidade;
+    protected static ArrayList<Autor> autores = new ArrayList<Autor>();
+    
     public static String verde = "\u001B[32m";
     public static String reset = "\u001B[0m";
-    public String nome;
-    public static ArrayList<Autor> autores = new ArrayList<Autor>();
 
-    public Autor(String nome) {
-        this.nome = nome;
+    public Autor(String nome, String nacionalidade) {
+        super (nome);
+        this.nacionalidade = nacionalidade;
 
-        autores.add(this);
+        autores.add(this); 
+    }
+
+    public String getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
+    }
+
+    public static ArrayList<Autor> getAutores() {
+        return autores;
     }
 
     public String toString() {
-        return " => " + this.nome;
+        return " Nome: " + this.nome + " Nacionalidade: "+ this.nacionalidade;
     }
 
     public static void listarAutores() {
@@ -27,5 +41,3 @@ public class Autor {
         }
     }
 }
-/*Autor: Esta classe deve representar um autor de livros e deve conter um atributo nome. 
-    Ela deve ter um construtor para inicializar o nome do autor e um método toString para representar a classe como uma string. */

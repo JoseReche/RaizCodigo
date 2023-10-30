@@ -2,21 +2,26 @@ package programação_java.Provas.Prova2;
 
 import java.util.ArrayList;
 
-public class Livro {
+public class Livro extends Midia {
     public static String verde = "\u001B[32m";
     public static String reset = "\u001B[0m";
-    public String titulo;
-    public Autor autor;
-    public boolean disponivel;
 
+    protected Autor autor;
     public static ArrayList<Livro> livros = new ArrayList<>();
 
     public Livro(String titulo, Autor autor, boolean disponivel) {
-        this.titulo = titulo;
+        super (titulo, disponivel);
         this.autor = autor;
-        this.disponivel = disponivel;
 
         livros.add(this);
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
     }
 
     public String toString() {
@@ -34,17 +39,5 @@ public class Livro {
         }
     }
 
-    public void emprestar() throws Exception {
-        if (!this.disponivel) {
-            throw new Exception("Livro não está disponível");
-        }
-        this.disponivel = false;
-    }
-
-    public void devolver() throws Exception {
-        if (this.disponivel) {
-            throw new Exception("Livro já está disponível");
-        }
-        this.disponivel = true;
-    }
+   
 }
