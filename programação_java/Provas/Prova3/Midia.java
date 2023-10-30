@@ -1,4 +1,4 @@
-package programação_java.Provas.Prova2;
+package programação_java.Provas.Prova3;
 
 public class Midia {
     protected String titulo;

@@ -1,4 +1,4 @@
-package programação_java.Provas.Prova2;
+package programação_java.Provas.Prova3;
 
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ public class Biblioteca {
     }
     
     public void adicionarLivro(Livro livro) {
-        this.midi as.add(livro);
+        this.midias.add(livro);
     }
     
     public void listarMidias() {
