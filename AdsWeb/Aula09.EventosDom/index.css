@@ -1,0 +1,6 @@
+#myParagraph {
+    transition: background-color 0.5s;
+}
+#myParagraph:hover {
+    background-color: yellow;
+}
