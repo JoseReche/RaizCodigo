@@ -281,6 +281,7 @@ public class Sistema {
         }
         return parametro;
     }
+    // todo: Valida se tem letra no Integer---------------------------------------------------
     public static Integer ValidInt(String txt,Scanner scanner){
         String parametro;
         char caracter;
