@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Entrada {
@@ -82,10 +83,19 @@ public class Entrada {
                     break;
                 }
                 case 5:{
+                    ArrayList<String> usuarios = new ArrayList<String>();
                     System.out.println("╔══════════════════════════════════════╗");
                     System.out.println("║"+roxo+"           LOGAR USUÁRIO              "+reset+"║");
                     System.out.println("╚══════════════════════════════════════╝");
-                    conexao.LogarUsuarioExpecifico("dsd","dsd");
+                    conexao.LogarUsuarioExpecifico(usuarios);
+                    String login = ValidString("Digite o Login: ", scanner);
+                    System.out.print("Digite a senha: ");
+                    String senha = scanner.next();
+                    for(String usuario : usuarios){
+                       if (usuario.equals(login+senha)){
+                        System.out.println(" logado ");
+                       }
+                    }
                     break;
                 }
             }

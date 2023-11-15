@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Conexao {
     protected String banco;
@@ -170,39 +171,24 @@ public class Conexao {
             e.printStackTrace();
         }
     }
-    // todo: Selecionar Logar Usuario Expecifico-------------------------------
-    public void LogarUsuarioExpecifico(String nome,String senha){
-        try{
+    // todo: Logar Usuario Expecifico------------------------------------------
+    public ArrayList LogarUsuarioExpecifico(ArrayList<String> usuarios){
+        try {
             Connection connManager = DriverManager
-            .getConnection(
-                "jdbc:mysql://localhost:3306/"+this.banco,
-                this.usuario,
-                this.senha
-            );
-            // SQL para deletar um usuário
-            // Nome do usuário que você está procurando
-            // Declaração da conexão
-        
-            // SQL para consultar um usuário pelo nome
-            String sql = "SELECT * FROM usuario WHERE nome = ?";
-            try (PreparedStatement statement = connManager.prepareStatement(sql)) {
-                // Define o parâmetro (nome do usuário)
-                statement.setString(1, nome);
-
-                // Executa a consulta
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    // Processa os resultados
-                    while (resultSet.next()) {
-                        // Exemplo: recuperar dados da coluna 'nome'
-                        String nomeEscolhido = resultSet.getString("nome");
-                        System.out.println("Usuário encontrado: " + nomeEscolhido);
-                    }
-                }
+                .getConnection(
+                    "jdbc:mysql://localhost:3306/"+this.banco,
+                    this.usuario,
+                    this.senha
+                );
+            PreparedStatement ps = connManager.prepareStatement("SELECT * FROM usuario");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                usuarios.add(rs.getString("nome_usuario")+rs.getString("senha"));
             }
-            connManager.close();
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
+            connManager.close();           
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
         }
+        return usuarios;
     }
 }
