@@ -35,6 +35,35 @@ public class Conexao {
             System.out.println(exception.getMessage());
         }
     }
+    //! Inserir banco-----------------------------------------------------
+    public void InserirBanco(String nome, String email, String senha){
+        try {
+            Connection connManager = DriverManager
+            .getConnection(
+                "jdbc:mysql://localhost:3306/"+this.banco,
+                this.usuario,
+                this.senha
+            );
+            String sql = "create schema ?";
+            try (PreparedStatement statement = connManager.prepareStatement(sql)) {
+                // Define os parâmetros
+                statement.setString(1, nome);
+
+                // Executa a inserção
+                int linhasAfetadas = statement.executeUpdate();
+
+                if (linhasAfetadas > 0) {
+                    System.out.println("Usuário cadastrado com sucesso!");
+                } else {
+                    System.out.println("Falha ao cadastrar o usuário.");
+                }
+            }
+            connManager.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     // todo: Inserir usuario---------------------------------------------------
     public void InserirUsuario(String nome, String email, String senha){
         try {
