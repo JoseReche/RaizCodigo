@@ -12,123 +12,107 @@ public class Entrada {
     public static void main(String[] args) {
         
         Scanner scanner = new Scanner(System.in);
-        int op1=0;
-        do{
+        
+        System.out.println("╔══════════════════════════════════════╗");
+        System.out.println("║"+roxo+"  BEM VINDO AO GERENCIADOR DE BANCO   "+reset+"║");
+        System.out.println("╠══════════════════════════════════════╣");
+        System.out.println("║"+roxo+"   Digite os dados de conexâo         "+reset+"║");
+        System.out.println("╚══════════════════════════════════════╝");
+        String BD,usuarioBD,senhaBD;
+        BD = ValidString("Digite o nome do seu banco ",scanner);
+        usuarioBD = ValidString("Digite o usuário root do banco",scanner);
+        System.out.println(" Digite a senha do seu banco");
+        Seta();
+        senhaBD = scanner.nextLine();
+        senhaBD = scanner.nextLine();
+        Conexao conexao = new Conexao(BD, usuarioBD,senhaBD);
+        int op2 = 0;
+        do {
             System.out.println("╔══════════════════════════════════════╗");
-            System.out.println("║"+roxo+"  BEM VINDO AO GERENCIADOR DE BANCO  "+reset+"║");
+            System.out.println("║"+roxo+"         BIBLIOTECA MUNICIPAL         "+reset+"║");
             System.out.println("╠══════════════════════════════════════╣");
-            System.out.println("║ [1] - Logar no Banco                 ║");
+            System.out.println("║ [1] - Criar Usuário                  ║");
+            System.out.println("║ [2] - Alterar Usuário                ║");
+            System.out.println("║ [3] - Excluir Usuário                ║");
+            System.out.println("║ [4] - Visualizar Usuario             ║");
+            System.out.println("║ [5] - Logar                          ║");
             System.out.println("║"+vermelho + " [0] - Sair                           " + reset+"║");
             System.out.println("╚══════════════════════════════════════╝");
-            op1 = ValidInt("Escolha uma função",scanner);
-            switch (op1) {
+            op2 = ValidInt("Escolha uma função",scanner);
+            switch (op2) {
+                case 0:{
+                    System.out.println(vermelho+"Sair...."+reset);
+                    break;
+                }
                 case 1:{
                     System.out.println("╔══════════════════════════════════════╗");
-                    System.out.println("║"+roxo+"   Digite os dados de conexâo         "+reset+"║");
+                    System.out.println("║"+roxo+"           CRIAR USUÁRIO              "+reset+"║");
                     System.out.println("╚══════════════════════════════════════╝");
-                    String BD,usuarioBD,senhaBD;
-                    BD = ValidString("Digite o nome do seu banco ",scanner);
-                    usuarioBD = ValidString("Digite o usuário root do banco",scanner);
-                    System.out.println(" Digite a senha do seu banco");
-                    Seta();
-                    senhaBD =scanner.nextLine();
-                    senhaBD =scanner.nextLine();
-                    Conexao conexao = new Conexao(BD, usuarioBD,senhaBD);
+                    String usuario = ValidString("Digite o seu Nome do Usuário",scanner);
+                    String email = ValidString("Digite o seu Email do Usuário",scanner);
+                    String senha = ValidString("Digite a sua Senha do Usuário",scanner);
+                    conexao.InserirUsuario(usuario, email, senha);
                     break;
                 }
                 case 2:{
-                    int op2 = 0;
-                    
-                    do {
+                    System.out.println("╔══════════════════════════════════════╗");
+                    System.out.println("║"+roxo+"           ALTERAR USUÁRIO             "+reset+"║");
+                    System.out.println("╚══════════════════════════════════════╝");
+                    conexao.SelecionarUsuario(0);
+                    Integer id = ValidInt("Selecione O Usuário",scanner);
+                    String nome = ValidString("Digite o Novo Nome do Usuário",scanner);
+                    String email = ValidString("Digite o Novo Email do Usuário",scanner);
+                    conexao.AlterarUsuario(id, email, nome);
+                    break;
+                }
+                case 3:{
+                    int op3;
+                    do{
                         System.out.println("╔══════════════════════════════════════╗");
-                        System.out.println("║"+roxo+"         BIBLIOTECA MUNICIPAL         "+reset+"║");
-                        System.out.println("╠══════════════════════════════════════╣");
-                        System.out.println("║ [1] - Criar Usuário                  ║");
-                        System.out.println("║ [2] - Alterar Usuário                ║");
-                        System.out.println("║ [3] - Excluir Usuário                ║");
-                        System.out.println("║ [4] - Visualizar Usuario             ║");
-                        System.out.println("║ [5] - Logar                          ║");
-                        System.out.println("║"+vermelho + " [0] - Sair                           " + reset+"║");
+                        System.out.println("║"+roxo+"           EXCLUIR USUÁRIO            "+reset+"║");
                         System.out.println("╚══════════════════════════════════════╝");
-                        op2 = ValidInt("Escolha uma função",scanner);
-                        switch (op2) {
-                            case 0:{
-                                System.out.println(vermelho+"Sair...."+reset);
-                                break;
-                            }
+                        conexao.SelecionarUsuario(1);
+                        Integer id = ValidInt("Selecione O Usuário para Excluir",scanner);
+                        System.out.print("Você escolheu o usuario: ");
+                        conexao.SelecionarUsuarioExpecifico(id);
+                        op3 = ValidInt("Deseja Exclui-lo permanentemente [1] - Sim [2] - Não", scanner);
+                        switch (op3) {
                             case 1:{
-                                System.out.println("╔══════════════════════════════════════╗");
-                                System.out.println("║"+roxo+"           CRIAR USUÁRIO              "+reset+"║");
-                                System.out.println("╚══════════════════════════════════════╝");
-                                String usuario = ValidString("Digite o seu Nome do Usuário",scanner);
-                                String email = ValidString("Digite o seu Email do Usuário",scanner);
-                                String senha = ValidString("Digite a sua Senha do Usuário",scanner);
-                                conexao.InserirUsuario(usuario, email, senha);
+                                conexao.ExcluirUsuarioExpecifico(id);
                                 break;
                             }
-                            case 2:{
-                                System.out.println("╔══════════════════════════════════════╗");
-                                System.out.println("║"+roxo+"           ALTERAR USUÁRIO             "+reset+"║");
-                                System.out.println("╚══════════════════════════════════════╝");
-                                conexao.SelecionarUsuario(0);
-                                Integer id = ValidInt("Selecione O Usuário",scanner);
-                                String nome = ValidString("Digite o Novo Nome do Usuário",scanner);
-                                String email = ValidString("Digite o Novo Email do Usuário",scanner);
-                                conexao.AlterarUsuario(id, email, nome);
+                            default:
+                                op3 = ValidInt("Deseja Continuar [1] - Sim [0] - Não", scanner);
                                 break;
-                            }
-                            case 3:{
-                                int op3;
-                                do{
-                                    System.out.println("╔══════════════════════════════════════╗");
-                                    System.out.println("║"+roxo+"           EXCLUIR USUÁRIO            "+reset+"║");
-                                    System.out.println("╚══════════════════════════════════════╝");
-                                    conexao.SelecionarUsuario(1);
-                                    Integer id = ValidInt("Selecione O Usuário para Excluir",scanner);
-                                    System.out.print("Você escolheu o usuario: ");
-                                    conexao.SelecionarUsuarioExpecifico(id);
-                                    op3 = ValidInt("Deseja Exclui-lo permanentemente [1] - Sim [2] - Não", scanner);
-                                    switch (op3) {
-                                        case 1:{
-                                            conexao.ExcluirUsuarioExpecifico(id);
-                                            break;
-                                        }
-                                        default:
-                                            op3 = ValidInt("Deseja Continuar [1] - Sim [0] - Não", scanner);
-                                            break;
-                                    }
-                                }while(op3 != 0);
-                                break;
-                            }
-                            case 4:{
-                                System.out.println("╔══════════════════════════════════════╗");
-                                System.out.println("║"+roxo+"           VISUALIZAR USUÁRIOS        "+reset+"║");
-                                System.out.println("╚══════════════════════════════════════╝");
-                                conexao.SelecionarUsuario(0);
-                                break;
-                            }
-                            case 5:{
-                                ArrayList<String> usuarios = new ArrayList<String>();
-                                System.out.println("╔══════════════════════════════════════╗");
-                                System.out.println("║"+roxo+"           LOGAR USUÁRIO              "+reset+"║");
-                                System.out.println("╚══════════════════════════════════════╝");
-                                conexao.LogarUsuarioExpecifico(usuarios);
-                                String login = ValidString("Digite o Login: ", scanner);
-                                System.out.print("Digite a senha: ");
-                                String senha = scanner.next();
-                                for(String usuario : usuarios){
-                                if (usuario.equals(login+senha)){
-                                    System.out.println(" logado ");
-                                }
-                                }
-                                break;
-                            }
                         }
-                    }while (op2 != 0);   
+                    }while(op3 != 0);
+                    break;
+                }
+                case 4:{
+                    System.out.println("╔══════════════════════════════════════╗");
+                    System.out.println("║"+roxo+"           VISUALIZAR USUÁRIOS        "+reset+"║");
+                    System.out.println("╚══════════════════════════════════════╝");
+                    conexao.SelecionarUsuario(0);
+                    break;
+                }
+                case 5:{
+                    ArrayList<String> usuarios = new ArrayList<String>();
+                    System.out.println("╔══════════════════════════════════════╗");
+                    System.out.println("║"+roxo+"           LOGAR USUÁRIO              "+reset+"║");
+                    System.out.println("╚══════════════════════════════════════╝");
+                    conexao.LogarUsuarioExpecifico(usuarios);
+                    String login = ValidString("Digite o Login: ", scanner);
+                    System.out.print("Digite a senha: ");
+                    String senha = scanner.next();
+                    for(String usuario : usuarios){
+                        if (usuario.equals(login+senha)){
+                            System.out.println(" Usuario Logado ");
+                        }
+                    }
+                    break;
                 }
             }
-        }while(op1 != 0);
-        
+        }while (op2 != 0);   
         scanner.close();
     }
 //Validações ----------------------------------------------------------------
