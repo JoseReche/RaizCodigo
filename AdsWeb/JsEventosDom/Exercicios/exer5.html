@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lan House do Aeroporto</title>
+</head>
+<body>
+
+    <h1>Lan House do Aeroporto</h1>
+
+    <form id="lanHouseForm">
+        <label for="valorPor15min">Valor por 15 minutos de uso (R$/15min):</label>
+        <input type="number" step="0.01" id="valorPor15min" required>
+
+        <label for="tempoDeUso">Tempo de uso em minutos:</label>
+        <input type="number" id="tempoDeUso" required>
+
+        <button type="button" onclick="calcularValorAPagar()">Calcular Valor a Pagar</button>
+    </form>
+
+    <div id="resultado" style="display:none;">
+        <h2>Resultado:</h2>
+        <p id="valorAPagarResultado"></p>
+    </div>
+
+    <script>
+        function calcularValorAPagar() {
+            // Obter os valores do formulário
+            var valorPor15min = parseFloat(document.getElementById("valorPor15min").value);
+            var tempoDeUso = parseInt(document.getElementById("tempoDeUso").value);
+
+            // Calcular o valor a ser pago
+            var valorAPagar = calcularValorAPagar(valorPor15min, tempoDeUso);
+
+            // Exibir resultados
+            document.getElementById("valorAPagarResultado").innerText = "Valor a ser Pago: R$ " + valorAPagar.toFixed(2);
+            
+            // Mostrar a seção de resultados
+            document.getElementById("resultado").style.display = "block";
+        }
+
+        function calcularValorAPagar(valorPor15min, tempoDeUso) {
+            // Calcular o número total de intervalos de 15 minutos
+            var intervalos = Math.floor(tempoDeUso / 15);
+            // Se houver tempo extra, adicionar um intervalo adicional
+            if (tempoDeUso % 15 !== 0) {
+                intervalos += 1;
+            }
+            // Calcular o valor total a pagar
+            var valorTotal = intervalos * valorPor15min;
+            return valorTotal;
+        }
+    </script>
+
+</body>
+</html>

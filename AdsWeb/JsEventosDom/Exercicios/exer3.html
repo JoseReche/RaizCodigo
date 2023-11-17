@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante</title>
+</head>
+<body>
+
+    <h1>Calculadora de Consumo em Restaurante</h1>
+
+    <form id="restauranteForm">
+        <label for="precoPorKg">Preço por kg (R$/kg):</label>
+        <input type="number" step="0.01" id="precoPorKg" required>
+
+        <label for="consumoEmGramas">Consumo em gramas:</label>
+        <input type="number" id="consumoEmGramas" required>
+
+        <button type="button" onclick="calcularValorAPagar()">Calcular Valor a Pagar</button>
+    </form>
+
+    <div id="resultado" style="display:none;">
+        <h2>Resultado:</h2>
+        <p id="valorAPagarResultado"></p>
+    </div>
+
+    <script>
+        function calcularValorAPagar() {
+            // Obter os valores do formulário
+            var precoPorKg = parseFloat(document.getElementById("precoPorKg").value);
+            var consumoEmGramas = parseFloat(document.getElementById("consumoEmGramas").value);
+
+            // Calcular o valor a ser pago
+            var valorAPagar = (precoPorKg / 1000) * consumoEmGramas;
+
+            // Exibir resultados
+            document.getElementById("valorAPagarResultado").innerText = "Valor a ser Pago: R$ " + valorAPagar.toFixed(2);
+            
+            // Mostrar a seção de resultados
+            document.getElementById("resultado").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD - JavaScript</title>
+    <style>
+        input[type = 'submit'], button[aria-label] {
+            cursor: pointer;
+        }
+        #spoiler{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cadastro de Pets</h1>
+    <div>
+        <form action="javascript:void(0);" method="POST">
+            <fieldset>
+                <legend>Dados do Pet</legend>
+                <label for="pet">Nome:</label>
+                <input type="text" name="pet" id="pet">
+                <br>
+                <label for="idade">Idade:</label>
+                <input type="text" name="idade" id="idade">
+            </fieldset>
+            <fieldset>
+                <legend>Dados do Tutor</legend>
+                <label for="tutor">Nome:</label>
+                <input type="text" name="tutor" id="tutor">
+            </fieldset>
+            <fieldset>
+                <button onclick="cadPet();">Cadastrar</button>
+                <button onclick="limparConteudo();">Limpar</button>
+            </fieldset>
+        </form>
+    </div>
+    <div id="spoiler" role="aria-hidden">
+        <form action="javascript:void(0);" method="POST" id="saveEdit">
+            <fieldset>
+                <legend>Alteração</legend>
+                <input type="text" id="edit-name"><br>
+                <input type="text" id="edit-idade"><br>
+                <input type="text" id="edit-tutor"><br>
+                <input type="submit" value="Edit"><br>
+                <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+            </fieldset>
+        </form>
+    </div>
+    <p id="counter"></p>
+    <table>
+        <tr>
+            <th>Cadastro</th>
+        </tr>
+        <tr>
+            <td>Nome</td>
+            <td>Idade</td>
+            <td>Tutor</td>
+        </tr>
+        <tbody id="pets"></tbody>
+    </table>
+
+    <script>
+        this.el = document.getElementById('pets');
+        var array = new Array();
+        listPet();
+
+        function listPet(){
+            let data = '';
+            if (this.array.length > 0){
+                for(let i=0; i< this.array.length; i++){
+                    data += '<tr>';
+                    data += '<td> '+this.array[i].nome+'</td>';   
+                    data += '<td> '+this.array[i].idade+'</td>';   
+                    data += '<td> '+this.array[i].tutor+'</td>';   
+                    data += '<td><button onclick="Edit('+i+')">Edit</button></td>';    
+                    data += '<td><button onclick="Delete('+i+')">Delete</button></td>';    
+                    data += '</tr>';
+                }
+            }
+            Count(this.array.length);
+            return this.el.innerHTML = data;
+        }
+
+        this.Delete = function(item){
+            this.array.splice(item,1);
+            this.listPet();
+        }
+
+        function Count(data){
+            let elemento = document.getElementById('counter');
+            let name = "Pet";
+
+            if (data){
+                if (data > 1){
+                    name = 'Pets';
+                }
+                elemento.innerHTML = data + ' ' + name;
+            } else {
+                elemento.innerHTML = 'Nenhum ' + name + ' cadastrado.';
+            }
+        }
+
+        function limparConteudo(){
+            this.array = new Array();
+            Count(this.array.length);
+            document.getElementById('pet').value = null;
+            document.getElementById('idade').value = null;
+            document.getElementById('tutor').value = null;
+            return this.el.innerHTML = "";
+        }
+
+        function limparCampos(){
+            document.getElementById('pet').value = null;
+            document.getElementById('idade').value = null;
+            document.getElementById('tutor').value = null;
+            return 0;
+        }
+
+        function cadPet(){
+            let nome = document.getElementById('pet');
+            let idade= document.getElementById('idade');
+            let tutor= document.getElementById('tutor');
+
+            if (nome.value && idade.value && tutor.value){
+                let objPet = new Object();
+                objPet.nome = nome.value;
+                objPet.idade= idade.value;
+                objPet.tutor= tutor.value;
+
+                array.push(objPet);
+            }
+            listPet();
+            limparCampos();
+        };
+
+        this.Edit =function(item){
+            let nome = document.getElementById('edit-name');
+            let idade = document.getElementById('edit-idade');
+            let tutor = document.getElementById('edit-tutor');
+            
+            //Display value in the field
+            nome.value = this.array[item].nome;
+            idade.value = this.array[item].idade;
+            tutor.value = this.array[item].tutor;
+
+            //Display fields
+            document.getElementById('spoiler').style.display = "block";
+            self = this;
+            document.getElementById('saveEdit').onsubmit = function() {
+                let nome = document.getElementById('edit-name');
+                let idade = document.getElementById('edit-idade');
+                let tutor = document.getElementById('edit-tutor');
+                if(nome.value && idade.value && tutor.value){
+                    self.array[item].nome = nome.value;
+                    self.array[item].idade = idade.value;
+                    self.array[item].tutor = tutor.value;
+                }
+                listPet();
+                //Esconder Campos
+                closeInput();
+            }
+        };
+        function closeInput(){
+            document.getElementById('spoiler').style.display = "none";
+
+        };
+    </script>
+</body>
+</html>

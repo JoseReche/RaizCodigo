@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Locadora</title>
+</head>
+<body>
+
+    <h1>Video Locadora</h1>
+
+    <form id="filmeForm">
+        <label for="titulo">Título do Filme:</label>
+        <input type="text" id="titulo" required>
+
+        <label for="duracao">Duração em Minutos:</label>
+        <input type="number" id="duracao" required>
+
+        <button type="button" onclick="calcularDuracao()">Calcular Duração</button>
+    </form>
+
+    <div id="resultado" style="display:none;">
+        <h2>Informações do Filme:</h2>
+        <p id="tituloResultado"></p>
+        <p id="duracaoResultado"></p>
+    </div>
+
+    <script>
+        function calcularDuracao() {
+            // Obter os valores do formulário
+            var titulo = document.getElementById("titulo").value;
+            var duracaoEmMinutos = parseInt(document.getElementById("duracao").value);
+
+            // Calcular horas e minutos
+            var horas = Math.floor(duracaoEmMinutos / 60);
+            var minutos = duracaoEmMinutos % 60;
+
+            // Exibir resultados
+            document.getElementById("tituloResultado").innerText = "Título: " + titulo;
+            document.getElementById("duracaoResultado").innerText = "Duração: " + horas + " horas e " + minutos + " minutos";
+            
+            // Mostrar a seção de resultados
+            document.getElementById("resultado").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>

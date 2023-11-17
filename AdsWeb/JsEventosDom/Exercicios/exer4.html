@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmácia - Promoção</title>
+</head>
+<body>
+
+    <h1>Farmácia - Promoção</h1>
+
+    <form id="medicamentoForm">
+        <label for="descricao">Descrição do Medicamento:</label>
+        <input type="text" id="descricao" required>
+
+        <label for="preco">Preço do Medicamento (R$/unidade):</label>
+        <input type="number" step="0.01" id="preco" required>
+
+        <label for="quantidade">Quantidade Comprada:</label>
+        <input type="number" id="quantidade" required>
+
+        <button type="button" onclick="calcularPrecoFinal()">Calcular Preço Final</button>
+    </form>
+
+    <div id="resultado" style="display:none;">
+        <h2>Resumo da Compra:</h2>
+        <p id="descricaoResultado"></p>
+        <p id="precoResultado"></p>
+        <p id="quantidadeResultado"></p>
+        <p id="precoFinalResultado"></p>
+    </div>
+
+    <script>
+        function calcularPrecoFinal() {
+            // Obter os valores do formulário
+            var descricao = document.getElementById("descricao").value;
+            var preco = parseFloat(document.getElementById("preco").value);
+            var quantidade = parseInt(document.getElementById("quantidade").value);
+
+            // Calcular o preço final
+            var precoFinal = preco * quantidade;
+
+            // Se a quantidade for maior ou igual a 2, aplicar desconto
+            if (quantidade >= 2) {
+                precoFinal = precoFinal - (precoFinal % 1);
+            }
+
+            // Exibir resultados
+            document.getElementById("descricaoResultado").innerText = "Descrição do Medicamento: " + descricao;
+            document.getElementById("precoResultado").innerText = "Preço do Medicamento: R$ " + preco.toFixed(2) + " por unidade";
+            document.getElementById("quantidadeResultado").innerText = "Quantidade Comprada: " + quantidade + " unidades";
+            document.getElementById("precoFinalResultado").innerText = "Preço Final: R$ " + precoFinal.toFixed(2);
+            
+            // Mostrar a seção de resultados
+            document.getElementById("resultado").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>

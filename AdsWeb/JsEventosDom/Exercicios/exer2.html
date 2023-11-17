@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenda de Veículos</title>
+</head>
+<body>
+
+    <h1>Revenda de Veículos</h1>
+
+    <form id="veiculoForm">
+        <label for="modelo">Modelo do Veículo:</label>
+        <input type="text" id="modelo" required>
+
+        <label for="preco">Preço do Veículo:</label>
+        <input type="number" id="preco" required>
+
+        <button type="button" onclick="calcularPagamento()">Calcular Pagamento</button>
+    </form>
+
+    <div id="resultado" style="display:none;">
+        <h2>Detalhes da Compra:</h2>
+        <p id="modeloResultado"></p>
+        <p id="precoResultado"></p>
+        <p id="entradaResultado"></p>
+        <p id="saldo12xResultado"></p>
+    </div>
+
+    <script>
+        function calcularPagamento() {
+            // Obter os valores do formulário
+            var modelo = document.getElementById("modelo").value;
+            var preco = parseFloat(document.getElementById("preco").value);
+
+            // Calcular entrada e saldo em 12x
+            var entrada = preco * 0.5;
+            var saldoEm12x = (preco - entrada) / 12;
+
+            // Exibir resultados
+            document.getElementById("modeloResultado").innerText = "Modelo do Veículo: " + modelo;
+            document.getElementById("precoResultado").innerText = "Preço do Veículo: R$ " + preco.toFixed(2);
+            document.getElementById("entradaResultado").innerText = "Valor da Entrada (50%): R$ " + entrada.toFixed(2);
+            document.getElementById("saldo12xResultado").innerText = "Saldo em 12x: R$ " + saldoEm12x.toFixed(2) + " por mês";
+            
+            // Mostrar a seção de resultados
+            document.getElementById("resultado").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
