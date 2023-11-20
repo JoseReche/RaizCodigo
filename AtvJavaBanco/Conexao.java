@@ -181,8 +181,7 @@ public class Conexao {
                 while (rs.next()) {
                     System.out.println("["+i+"] => "+
                     rs.getString("titulo")+"  "+
-                    rs.getBoolean("album")+"  "+
-                    rs.getBoolean("disponivel"));
+                    rs.getString("album"));
                     i++;
                 }
             }else{
@@ -197,7 +196,85 @@ public class Conexao {
             System.out.println(exception.getMessage());
         }
     }
-    
+    //Contar Midia Digital-----------------------------------------------------
+    public static Integer ContarMidiaDigital(){
+        int i=0;
+        try {
+            Connection connManager = DriverManager
+                .getConnection(
+                    "jdbc:mysql://localhost:3306/"+banco,
+                    usuario,
+                    senha
+                );
+            PreparedStatement ps = connManager.prepareStatement("SELECT * FROM midia_digital");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                i++;
+            }
+            connManager.close();
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return i;
+    }
+     //Emprestar Midia Digital -------------------------------------------------
+    public static void EmprestarMidiaDigital(int midia){
+        try {
+            Connection connManager = DriverManager
+            .getConnection(
+                "jdbc:mysql://localhost:3306/"+banco,
+                usuario,
+                senha
+            );
+            String sql = "UPDATE midia_digital SET disponivel = ? WHERE id_midia_digital="+midia;
+            try (PreparedStatement statement = connManager.prepareStatement(sql)) {
+                // Define os parâmetros
+                statement.setInt(1, 1);
+
+                // Executa a inserção
+                int linhasAfetadas = statement.executeUpdate();
+
+                if (linhasAfetadas > 0) {
+                    System.out.println("Midia Digital Emprestada com sucesso!");
+                } else {
+                    System.out.println("Falha ao Emprestar Midia Digital.");
+                }
+            }
+            connManager.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    //Devolver Midia Digital -------------------------------------------------
+    public static void DevolverMidiaDigital(int midia){
+        try {
+            Connection connManager = DriverManager
+            .getConnection(
+                "jdbc:mysql://localhost:3306/"+banco,
+                usuario,
+                senha
+            );
+            String sql = "UPDATE midia_digital SET disponivel = ? WHERE id_midia_digital="+midia;
+            try (PreparedStatement statement = connManager.prepareStatement(sql)) {
+                // Define os parâmetros
+                statement.setInt(1, 0);
+
+                // Executa a inserção
+                int linhasAfetadas = statement.executeUpdate();
+
+                if (linhasAfetadas > 0) {
+                    System.out.println("Midia Digital Devolvida com sucesso!");
+                } else {
+                    System.out.println("Falha ao Devolver Midia Digital.");
+                }
+            }
+            connManager.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     //! Livro-------------------------------
     //Inserir Livro-----------------------------------------------------
     public static void InserirLivro(Livro livro){
@@ -282,6 +359,62 @@ public class Conexao {
             System.out.println(exception.getMessage());
         }
         return i;
+    }
+    //Emprestar Livro -------------------------------------------------
+    public static void EmprestarLivro(int livro){
+        try {
+            Connection connManager = DriverManager
+            .getConnection(
+                "jdbc:mysql://localhost:3306/"+banco,
+                usuario,
+                senha
+            );
+            String sql = "UPDATE livro SET disponivel = ? WHERE id_livro="+livro;
+            try (PreparedStatement statement = connManager.prepareStatement(sql)) {
+                // Define os parâmetros
+                statement.setInt(1, 1);
+
+                // Executa a inserção
+                int linhasAfetadas = statement.executeUpdate();
+
+                if (linhasAfetadas > 0) {
+                    System.out.println("Livro Emprestado com sucesso!");
+                } else {
+                    System.out.println("Falha ao Emprestar Livro.");
+                }
+            }
+            connManager.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    //Devolver Livro -------------------------------------------------
+    public static void DevolverLivro(int livro){
+        try {
+            Connection connManager = DriverManager
+            .getConnection(
+                "jdbc:mysql://localhost:3306/"+banco,
+                usuario,
+                senha
+            );
+            String sql = "UPDATE livro SET disponivel = ? WHERE id_livro="+livro;
+            try (PreparedStatement statement = connManager.prepareStatement(sql)) {
+                // Define os parâmetros
+                statement.setInt(1, 0);
+
+                // Executa a inserção
+                int linhasAfetadas = statement.executeUpdate();
+
+                if (linhasAfetadas > 0) {
+                    System.out.println("Livro Devolvido com sucesso!");
+                } else {
+                    System.out.println("Falha ao Devolver Livro.");
+                }
+            }
+            connManager.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     //! Biblioteca--------------------------
@@ -391,8 +524,7 @@ public class Conexao {
         }
     }
     //listar Livro da Biblioteca----------------------------------------------
-    public static ArrayList listarLivroBiblioteca(int op,int biblioteca){
-        ArrayList<Integer> idLivros = new ArrayList<>();
+    public static void listarLivroBiblioteca(int biblioteca){
         try {
             Connection connManager = DriverManager
                 .getConnection(
@@ -400,29 +532,72 @@ public class Conexao {
                     usuario,
                     senha
                 );
-            PreparedStatement ps = connManager.prepareStatement("SELECT livro.id_livro, livro.titulo, biblioteca.nome as nome FROM livro JOIN biblioteca ON livro.id_biblioteca = biblioteca.id_biblioteca WHERE biblioteca.id_biblioteca ="+biblioteca);
+            PreparedStatement ps = connManager.prepareStatement("SELECT livro.id_livro, livro.titulo, livro.disponivel as nome FROM livro JOIN biblioteca ON livro.id_biblioteca = biblioteca.id_biblioteca WHERE biblioteca.id_biblioteca ="+biblioteca);
             //ResultSet rs = ps.executeQuery(); 
-            boolean temResultado = ps.execute();
-
-                // Verificar se há um conjunto de resultados (SELECT)
-                if (temResultado) {
-                    do {
-                        // Processar os resultados
-                        ResultSet rs = ps.getResultSet();
-                        while (rs.next()) {
-                            System.out.println(rs.getString("titulo"));
-                            //System.out.println(rs.getInt("id_livro"));
-                        }
-                        // Verificar se há mais conjuntos de resultados
-                        temResultado = ps.getMoreResults();
-
-                    } while (temResultado);
-                }
+            ResultSet rs = ps.executeQuery();
+            int i=1;
+            while (rs.next()) {
+                System.out.println("["+i+"]"+rs.getString("titulo"));
+                //System.out.println(rs.getInt("id_livro"));
+                i++;
+            }
+                
             connManager.close();
-            return idLivros;
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
-            return null;
         }
     }
+    //Incerir Midia Digital na Biblioteca-----------------------------------------------------
+    public static void InserirMidiaDigitalBiblioteca(int biblioteca, int midiaDigitalDigital){
+        try {
+            Connection connManager = DriverManager
+            .getConnection(
+                "jdbc:mysql://localhost:3306/"+banco,
+                usuario,
+                senha
+            );
+            String sql = "UPDATE midia_digital SET id_biblioteca = ? WHERE id_midia_digital="+midiaDigitalDigital;
+            try (PreparedStatement statement = connManager.prepareStatement(sql)) {
+                // Define os parâmetros
+                statement.setInt(1, biblioteca);
+
+                // Executa a inserção
+                int linhasAfetadas = statement.executeUpdate();
+
+                if (linhasAfetadas > 0) {
+                    System.out.println("Midia Digital Incuida na biblioteca com sucesso!");
+                } else {
+                    System.out.println("Falha ao Incuir Midia Digital na biblioteca.");
+                }
+            }
+            connManager.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    //listar Midia Digital da Biblioteca----------------------------------------------
+    public static void listarMidiaDigitalBiblioteca(int biblioteca){
+        try {
+            Connection connManager = DriverManager
+                .getConnection(
+                    "jdbc:mysql://localhost:3306/"+banco,
+                    usuario,
+                    senha
+                );
+            PreparedStatement ps = connManager.prepareStatement("SELECT midia_digital.id_midia_digital, midia_digital.titulo, midia_digital.disponivel as nome FROM midia_digital JOIN biblioteca ON midia_digital.id_biblioteca = biblioteca.id_biblioteca WHERE biblioteca.id_biblioteca ="+biblioteca);
+            //ResultSet rs = ps.executeQuery(); 
+            ResultSet rs = ps.executeQuery();
+            int i=1;
+            while (rs.next()) {
+                System.out.println("["+i+"]"+rs.getString("titulo"));
+                //System.out.println(rs.getInt("id_livro"));
+                i++;
+            }
+                
+            connManager.close();
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        }
+    }
+    
 }

@@ -128,35 +128,35 @@ public class Gerenciar {
                    // Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
 
                     int posicaoLivro = -1;
+                    Conexao.listarLivroBiblioteca(posicaoBiblioteca);
                     do {
-                        Conexao.listarLivroBiblioteca(1,posicaoBiblioteca);
-                        /*try {
+                        try {
                             posicaoLivro = scanner.nextInt();
-                            if (posicaoLivro >= Livro.getLivros().size()) {
+                            /*if (posicaoLivro >= Livro.getLivros().size()) {
                                 throw new Exception("Livro inválido");
-                            }
+                            }*/
                         } catch (Exception e) {
                             System.out.println("Livro inválido");
                             posicaoLivro = -1;
-                        }*/
+                        }
                     } while (posicaoLivro < 0);
 
                     //Livro livro = biblioteca.getLivros().get(posicaoLivro);
                     try {
-                        //livro.emprestar();
+                        Conexao.EmprestarLivro(posicaoLivro);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
 
                     break;
                 }
-                /*case 7: {
+                case 7: {
                     int posicaoBiblioteca = -1;
                     do {
-                        Biblioteca.listarBibliotecas();
+                        Conexao.listarBiblioteca(1);
                         try {
                             posicaoBiblioteca = scanner.nextInt();
-                            if (posicaoBiblioteca >= Biblioteca.getBibliotecas().size()) {
+                            if (posicaoBiblioteca > Conexao.ContarBiblioteca()) {
                                 throw new Exception("Biblioteca inválida");
                             }
                         } catch (Exception e) {
@@ -165,37 +165,38 @@ public class Gerenciar {
                         }
                     } while (posicaoBiblioteca < 0);
 
-                    Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
+                    //Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
 
                     int posicaoLivro = -1;
+                    Conexao.listarLivroBiblioteca(posicaoBiblioteca);
                     do {
-                        biblioteca.listarLivros();
+                        //biblioteca.listarLivros();
                         try {
                             posicaoLivro = scanner.nextInt();
-                            if (posicaoLivro >= Livro.getLivros().size()) {
+                            /*if (posicaoLivro >= Livro.getLivros().size()) {
                                 throw new Exception("Livro inválido");
-                            }
+                            }*/
                         } catch (Exception e) {
                             System.out.println("Livro inválido");
                             posicaoLivro = -1;
                         }
                     } while (posicaoLivro < 0);
 
-                    Livro livro = biblioteca.getLivros().get(posicaoLivro);
-                    try {
+                    Conexao.DevolverLivro(posicaoLivro);
+                    /*try {
                         livro.devolver();
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
-                    }
+                    }*/
                     break;
                 }
                 case 8: {
                     int posicaoBiblioteca = -1;
                     do {
-                        Biblioteca.listarBibliotecas();
+                        Conexao.listarBiblioteca(1);
                         try {
                             posicaoBiblioteca = scanner.nextInt();
-                            if (posicaoBiblioteca >= Biblioteca.getBibliotecas().size()) {
+                            if (posicaoBiblioteca > Conexao.ContarBiblioteca()) {
                                 throw new Exception("Biblioteca inválida");
                             }
                         } catch (Exception e) {
@@ -204,14 +205,14 @@ public class Gerenciar {
                         }
                     } while (posicaoBiblioteca < 0);
 
-                    Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
+                    //Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
 
                     int posicaoMidiaDigital = -1;
                     do {
-                        MidiaDigital.listarMidiaDigitals();
+                        Conexao.listarMidiaDigital(1);
                         try {
                             posicaoMidiaDigital = scanner.nextInt();
-                            if (posicaoMidiaDigital >= MidiaDigital.getMidiasDigitals().size()) {
+                            if (posicaoMidiaDigital > Conexao.ContarMidiaDigital()) {
                                 throw new Exception("Midia Digital inválido");
                             }
                         } catch (Exception e) {
@@ -220,18 +221,18 @@ public class Gerenciar {
                         }
                     } while (posicaoMidiaDigital < 0);
 
-                    MidiaDigital midiaDigital = MidiaDigital.getMidiasDigitals().get(posicaoMidiaDigital);
+                    //MidiaDigital midiaDigital = MidiaDigital.getMidiasDigitals().get(posicaoMidiaDigital);
 
-                    biblioteca.adicionarMidiaDigital(midiaDigital);
+                    Conexao.InserirMidiaDigitalBiblioteca(posicaoBiblioteca, posicaoMidiaDigital);
                     break;
                 }
                 case 9: {
                     int posicaoBiblioteca = -1;
                     do {
-                        Biblioteca.listarBibliotecas();
+                        Conexao.listarBiblioteca(1);
                         try {
                             posicaoBiblioteca = scanner.nextInt();
-                            if (posicaoBiblioteca >= Biblioteca.getBibliotecas().size()) {
+                            if (posicaoBiblioteca > Conexao.ContarBiblioteca()) {
                                 throw new Exception("Biblioteca inválida");
                             }
                         } catch (Exception e) {
@@ -240,38 +241,37 @@ public class Gerenciar {
                         }
                     } while (posicaoBiblioteca < 0);
 
-                    Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
+                    //Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
 
                     int posicaoMidiaDigital = -1;
+                    Conexao.listarMidiaDigitalBiblioteca(posicaoBiblioteca);
                     do {
-                        biblioteca.listarMidias();
                         try {
                             posicaoMidiaDigital = scanner.nextInt();
-                            if (posicaoMidiaDigital >= MidiaDigital.getMidiasDigitals().size()) {
+                            /*if (posicaoMidiaDigital >= MidiaDigital.getMidiasDigitals().size()) {
                                 throw new Exception("Midia Digital inválido");
-                            }
+                            }*/
                         } catch (Exception e) {
                             System.out.println("Midia Digital inválido");
                             posicaoMidiaDigital = -1;
                         }
                     } while (posicaoMidiaDigital < 0);
 
-                    MidiaDigital midiaDigital = biblioteca.getMidiasDigitals().get(posicaoMidiaDigital);
+                    //MidiaDigital midiaDigital = biblioteca.getMidiasDigitals().get(posicaoMidiaDigital);
                     try {
-                        midiaDigital.emprestar();
+                        Conexao.EmprestarMidiaDigital(posicaoMidiaDigital);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
-
                     break;
                 }
                 case 10: {
                     int posicaoBiblioteca = -1;
                     do {
-                        Biblioteca.listarBibliotecas();
+                        Conexao.listarBiblioteca(1);
                         try {
                             posicaoBiblioteca = scanner.nextInt();
-                            if (posicaoBiblioteca >= Biblioteca.getBibliotecas().size()) {
+                            if (posicaoBiblioteca > Conexao.ContarBiblioteca()) {
                                 throw new Exception("Biblioteca inválida");
                             }
                         } catch (Exception e) {
@@ -280,30 +280,30 @@ public class Gerenciar {
                         }
                     } while (posicaoBiblioteca < 0);
 
-                    Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
+                    //Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
 
                     int posicaoMidiaDigital = -1;
+                    Conexao.listarMidiaDigitalBiblioteca(posicaoBiblioteca);
                     do {
-                        biblioteca.listarMidias();
                         try {
                             posicaoMidiaDigital = scanner.nextInt();
-                            if (posicaoMidiaDigital >= MidiaDigital.getMidiasDigitals().size()) {
+                            /*if (posicaoMidiaDigital >= MidiaDigital.getMidiasDigitals().size()) {
                                 throw new Exception("Midia Digital inválido");
-                            }
+                            }*/
                         } catch (Exception e) {
                             System.out.println("Midia Digital inválido");
                             posicaoMidiaDigital = -1;
                         }
                     } while (posicaoMidiaDigital < 0);
 
-                    MidiaDigital midiaDigital = biblioteca.getMidiasDigitals().get(posicaoMidiaDigital);
+                    //MidiaDigital midiaDigital = biblioteca.getMidiasDigitals().get(posicaoMidiaDigital);
                     try {
-                        midiaDigital.devolver();
+                        Conexao.DevolverMidiaDigital(posicaoMidiaDigital);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                     break;
-                }*/
+                }
                 default: {
                     System.out.println("Opção inválida");
                     break;
