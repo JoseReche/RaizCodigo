@@ -1,23 +1,29 @@
 public class Biblioteca {
-    private String nome;
-    private ArrayList<Livro> livros;
-    private ArrayList<MidiaDigital> midiasDigitals;
+    protected String nome;
+    protected int idlivros;
+    protected int idBiblioteca;
+    protected MidiaDigital midiasDigitals;
 
-    private static ArrayList<Biblioteca> bibliotecas = new ArrayList<>();
+    //private static ArrayList<Biblioteca> bibliotecas = new ArrayList<>();
+    /*public Biblioteca(int idLivro, idBiblioteca) {
+        
+    }*/
 
     public Biblioteca(String nome) {
         this.nome = nome;
-        this.livros = new ArrayList<>();
-        this.midiasDigitals = new ArrayList<>();
 
-        bibliotecas.add(this);
+        Conexao.InserirBiblioteca(this);
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public String toString() {
         return "Nome: " + this.nome;
     }
 
-    public void adicionarLivro(Livro livro) {
+    /*public void adicionarLivro(Livro livro) {
         this.livros.add(livro);
     }
 
@@ -54,5 +60,5 @@ public class Biblioteca {
             Biblioteca biblioteca = bibliotecas.get(i);
             System.out.println(i + " - " + biblioteca.toString());
         }
-    }
+    }*/
 }

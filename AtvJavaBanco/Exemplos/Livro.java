@@ -1,42 +1,43 @@
 public class Livro extends Midia {
-    private Autor autor;
+    private Integer idAutor;
 
-    public Livro(String titulo, Autor autor, boolean disponivel) {
+    public Livro(int id, String titulo, Integer idAutor, Integer disponivel) {
+        super(id, titulo, disponivel);
+        this.idAutor = idAutor;
+    }
+
+    public Livro(String titulo, Integer idAutor, Integer disponivel) {
         super(titulo, disponivel);
-        this.autor = autor;
-
-        livros.add(this);
+        this.idAutor = idAutor;
+        Conexao.InserirLivro(this);
     }
 
-    public String toString() {
+    /*public String toString() {
         return "Título: " + super.getTitulo()
-            + ". Autor: " + this.autor.getNome() 
+            + ". Autor: " + this.idAutor.getNome() 
             + ". Disponível: " + (super.getDisponivel() ? "Sim" : "Não");
+    }*/
+
+    public void setidAutor(Integer idAutor) {
+        this.idAutor = idAutor;
     }
 
-    public void setAutor(Autor autor) {
-        this.autor = autor;
+    public Integer getidAutor() {
+        return this.idAutor;
     }
 
-    public Autor getAutor() {
-        return this.autor;
-    }
 
-    public static ArrayList<Livro> getLivros() {
-        return livros;
-    }
-
-    public static void listarLivros() {
+    /*public static void listarLivros() {
         for(int i = 0; i < livros.size(); i++) {
             System.out.println(i + " - " + livros.get(i).toString());
         }
-    }
+    }*/
 
-    public static void listarLivrosPorAutor(Autor autor) {
+    /*public static void listarLivrosPorAutor(Autor autor) {
         for(int i = 0; i < livros.size(); i++) {
             if (livros.get(i).autor == autor) {
                 System.out.println(i + " - " + livros.get(i).toString());
             }
         }
-    }
+    }*/
 }

@@ -5,6 +5,7 @@ public class Gerenciar {
         Scanner scanner = new Scanner(System.in);
 
         int op = 0;
+        Conexao.ConexaoBD();
 
         do {
             System.out.println("Minha Biblioteca");
@@ -46,7 +47,7 @@ public class Gerenciar {
                         Conexao.listarAutores(1);
                         try {
                             posicaoAutor = scanner.nextInt();
-                            if (posicaoAutor >= Conexao.ContarAutores()) {
+                            if (posicaoAutor > Conexao.ContarAutores()) {
                                 throw new Exception("Autor inválido");
                             }
                         } catch (Exception e) {
@@ -55,8 +56,8 @@ public class Gerenciar {
                         }
                     } while (posicaoAutor < 0);
 
-                    Autor autor = Conexao.SelecionarAutor(posicaoAutor);
-                    new Livro(titulo, autor, true);
+                    //Autor autor = Conexao.SelecionarAutor(posicaoAutor);
+                    new Livro(titulo, posicaoAutor, 0);
                     break;
                 }
                 case 3: {
@@ -64,7 +65,7 @@ public class Gerenciar {
                     String titulo = scanner.next();
                     System.out.println("Digite o album");
                     String album = scanner.next();
-                    new MidiaDigital(titulo, album, true);
+                    new MidiaDigital(titulo, album, 0);
                     break;
                 }
                 case 4: {
@@ -76,10 +77,10 @@ public class Gerenciar {
                 case 5: {
                     int posicaoBiblioteca = -1;
                     do {
-                        Biblioteca.listarBibliotecas();
+                        Conexao.listarBiblioteca(1);
                         try {
                             posicaoBiblioteca = scanner.nextInt();
-                            if (posicaoBiblioteca >= Biblioteca.getBibliotecas().size()) {
+                            if (posicaoBiblioteca >Conexao.ContarBiblioteca()) {
                                 throw new Exception("Biblioteca inválida");
                             }
                         } catch (Exception e) {
@@ -88,14 +89,14 @@ public class Gerenciar {
                         }
                     } while (posicaoBiblioteca < 0);
 
-                    Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
+                    //Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
 
                     int posicaoLivro = -1;
                     do {
-                        Livro.listarLivros();
+                        Conexao.listarLivro(1);
                         try {
                             posicaoLivro = scanner.nextInt();
-                            if (posicaoLivro >= Livro.getLivros().size()) {
+                            if (posicaoLivro > Conexao.ContarLivro()) {
                                 throw new Exception("Livro inválido");
                             }
                         } catch (Exception e) {
@@ -104,18 +105,18 @@ public class Gerenciar {
                         }
                     } while (posicaoLivro < 0);
 
-                    Livro livro = Livro.getLivros().get(posicaoLivro);
+                    //Livro livro = Livro.getLivros().get(posicaoLivro);
 
-                    biblioteca.adicionarLivro(livro);
+                   Conexao.InserirLivroBiblioteca(posicaoBiblioteca,posicaoLivro);
                     break;
                 }
                 case 6: {
                     int posicaoBiblioteca = -1;
                     do {
-                        Biblioteca.listarBibliotecas();
+                        Conexao.listarBiblioteca(1);
                         try {
                             posicaoBiblioteca = scanner.nextInt();
-                            if (posicaoBiblioteca >= Biblioteca.getBibliotecas().size()) {
+                            if (posicaoBiblioteca > Conexao.ContarBiblioteca()) {
                                 throw new Exception("Biblioteca inválida");
                             }
                         } catch (Exception e) {
@@ -124,12 +125,12 @@ public class Gerenciar {
                         }
                     } while (posicaoBiblioteca < 0);
 
-                    Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
+                   // Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
 
                     int posicaoLivro = -1;
                     do {
-                        biblioteca.listarLivros();
-                        try {
+                        Conexao.listarLivroBiblioteca(1,posicaoBiblioteca);
+                        /*try {
                             posicaoLivro = scanner.nextInt();
                             if (posicaoLivro >= Livro.getLivros().size()) {
                                 throw new Exception("Livro inválido");
@@ -137,19 +138,19 @@ public class Gerenciar {
                         } catch (Exception e) {
                             System.out.println("Livro inválido");
                             posicaoLivro = -1;
-                        }
+                        }*/
                     } while (posicaoLivro < 0);
 
-                    Livro livro = biblioteca.getLivros().get(posicaoLivro);
+                    //Livro livro = biblioteca.getLivros().get(posicaoLivro);
                     try {
-                        livro.emprestar();
+                        //livro.emprestar();
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
 
                     break;
                 }
-                case 7: {
+                /*case 7: {
                     int posicaoBiblioteca = -1;
                     do {
                         Biblioteca.listarBibliotecas();
@@ -302,7 +303,7 @@ public class Gerenciar {
                         System.out.println(e.getMessage());
                     }
                     break;
-                }
+                }*/
                 default: {
                     System.out.println("Opção inválida");
                     break;

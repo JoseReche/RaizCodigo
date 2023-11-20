@@ -14,9 +14,9 @@ public class Conexao {
         try {
             Connection connManager = DriverManager
                 .getConnection(
-                    "jdbc:mysql://localhost:3306/"+this.banco,
-                    this.usuario,
-                    this.senha
+                    "jdbc:mysql://localhost:3306/"+banco,
+                    usuario,
+                    senha
                 );
             System.out.println("Conexão estabelecida!");
             /*PreparedStatement ps = connManager.prepareStatement("SELECT * FROM usuario");
@@ -30,6 +30,7 @@ public class Conexao {
             System.out.println(exception.getMessage());
         }
     }
+    //! Autor------------------------------
     //Inserir autor-----------------------------------------------------
     public static void InserirAutor(Autor autor){
         try {
@@ -73,7 +74,9 @@ public class Conexao {
             if(op==1){
                 int i=1;
                 while (rs.next()) {   
-                    System.out.println("["+i+"] => "+rs.getString("nome_autor")+"  "+rs.getString("nac_autor"));
+                    System.out.println("["+i+"] => "+
+                    rs.getString("nome_autor")+"  "+
+                    rs.getString("nac_autor"));
                     i++;
                 }
             }else{
@@ -131,7 +134,8 @@ public class Conexao {
         }
     }
     
-    //Inserir midiaDigital-----------------------------------------------------
+    //! Midia Digital-----------------------
+    //Inserir Midia Digital-----------------------------------------------------
     public static void InserirMidiaDigital(MidiaDigital midiaDigital) {
         try {
             Connection connManager = DriverManager
@@ -144,7 +148,7 @@ public class Conexao {
             try (PreparedStatement statement = connManager.prepareStatement(sql)) {
                 // Define os parâmetros
                 statement.setString(1, midiaDigital.getTitulo());
-                statement.setBoolean(2, midiaDigital.getDisponivel());
+                statement.setInt(2, midiaDigital.getDisponivel());
                 statement.setString(3, midiaDigital.getAlbum());
 
                 // Executa a inserção
@@ -161,7 +165,7 @@ public class Conexao {
             e.printStackTrace();
         }
     }
-    //listar autor-----------------------------------------------------
+    //listar Midia Dogotal-----------------------------------------------------
     public static void listarMidiaDigital(int op){
         try {
             Connection connManager = DriverManager
@@ -194,7 +198,8 @@ public class Conexao {
         }
     }
     
-    //Inserir autor-----------------------------------------------------
+    //! Livro-------------------------------
+    //Inserir Livro-----------------------------------------------------
     public static void InserirLivro(Livro livro){
         try {
             Connection connManager = DriverManager
@@ -203,19 +208,20 @@ public class Conexao {
                 usuario,
                 senha
             );
-            String sql = "INSERT INTO autor (titulo,autor,disponivel) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO livro (titulo,disponivel,id_autor) VALUES (?, ?, ?)";
             try (PreparedStatement statement = connManager.prepareStatement(sql)) {
                 // Define os parâmetros
                 statement.setString(1, livro.getTitulo());
-                statement.set(2, livro.getAutor());
+                statement.setInt(2, livro.getDisponivel());
+                statement.setInt(3, livro.getidAutor());
 
                 // Executa a inserção
                 int linhasAfetadas = statement.executeUpdate();
 
                 if (linhasAfetadas > 0) {
-                    System.out.println("Autor cadastrado com sucesso!");
+                    System.out.println("Livro cadastrado com sucesso!");
                 } else {
-                    System.out.println("Falha ao cadastrar o Autor.");
+                    System.out.println("Falha ao cadastrar o Livro.");
                 }
             }
             connManager.close();
@@ -223,8 +229,8 @@ public class Conexao {
             e.printStackTrace();
         }
     }
-    //listar autor-----------------------------------------------------
-    public static void listarAutores(int op){
+    //listar Livro-----------------------------------------------------
+    public static void listarLivro(int op){
         try {
             Connection connManager = DriverManager
                 .getConnection(
@@ -232,17 +238,23 @@ public class Conexao {
                     usuario,
                     senha
                 );
-            PreparedStatement ps = connManager.prepareStatement("SELECT * FROM autor");
+            PreparedStatement ps = connManager.prepareStatement("SELECT * FROM livro");
             ResultSet rs = ps.executeQuery();
             if(op==1){
                 int i=1;
-                while (rs.next()) {   
-                    System.out.println("["+i+"] => "+rs.getString("nome_autor")+"  "+rs.getString("nac_autor"));
+                while (rs.next()) {
+                    System.out.println("["+i+"] => "+
+                    rs.getString("titulo")+"  "+
+                    rs.getString("id_autor")+"  "+
+                    rs.getInt("disponivel"));
                     i++;
                 }
             }else{
                 while (rs.next()) {
-                    System.out.println(rs.getString("nome_autor")+"  "+rs.getString("nac_autor"));
+                    System.out.println(
+                    rs.getString("titulo")+"  "+
+                    rs.getString("autor_id_autor")+"  "+
+                    rs.getInt("disponivel"));
                 }
             }
             connManager.close();
@@ -250,8 +262,8 @@ public class Conexao {
             System.out.println(exception.getMessage());
         }
     }
-    //Contar autor-----------------------------------------------------
-    public static Integer ContarAutores(){
+    //Contar Livro-----------------------------------------------------
+    public static Integer ContarLivro(){
         int i=0;
         try {
             Connection connManager = DriverManager
@@ -260,7 +272,7 @@ public class Conexao {
                     usuario,
                     senha
                 );
-            PreparedStatement ps = connManager.prepareStatement("SELECT * FROM autor");
+            PreparedStatement ps = connManager.prepareStatement("SELECT * FROM livro");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 i++;
@@ -271,8 +283,38 @@ public class Conexao {
         }
         return i;
     }
-    //Selecionar autor
-    public static Autor SelecionarAutor(int id){
+
+    //! Biblioteca--------------------------
+    //Incerir Biblioteca-----------------------------------------------------
+    public static void InserirBiblioteca(Biblioteca biblioteca){
+        try {
+            Connection connManager = DriverManager
+            .getConnection(
+                "jdbc:mysql://localhost:3306/"+ banco,
+                usuario,
+                senha
+            );
+            String sql = "INSERT INTO biblioteca (nome) VALUES (?)";
+            try (PreparedStatement statement = connManager.prepareStatement(sql)) {
+                // Define os parâmetros
+                statement.setString(1, biblioteca.getNome());
+
+                // Executa a inserção
+                int linhasAfetadas = statement.executeUpdate();
+
+                if (linhasAfetadas > 0) {
+                    System.out.println("Biblioteca cadastrada com sucesso!");
+                } else {
+                    System.out.println("Falha ao cadastrar a Biblioteca.");
+                }
+            }
+            connManager.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    //listar Biblioteca-----------------------------------------------------
+    public static void listarBiblioteca(int op){
         try {
             Connection connManager = DriverManager
                 .getConnection(
@@ -280,179 +322,107 @@ public class Conexao {
                     usuario,
                     senha
                 );
-            PreparedStatement ps = connManager.prepareStatement("SELECT id_autor, nome_autor, nac_autor FROM biblioteca.autor WHERE id="+id);
+            PreparedStatement ps = connManager.prepareStatement("SELECT * FROM biblioteca");
             ResultSet rs = ps.executeQuery();
-            Autor autor = new Autor(
-                rs.getInt("id_autor"),
-                rs.getString("nome_autor"),
-                rs.getString("nac_autor")
+            if(op==1){
+                int i=1;
+                while (rs.next()) {
+                    System.out.println("["+i+"] => "+
+                    rs.getString("nome"));
+                    i++;
+                }
+            }else{
+                while (rs.next()) {
+                    System.out.println(rs.getString("nome"));
+                }
+            }
+            connManager.close();
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        }
+    }
+    //Contar Biblioteca-----------------------------------------------------
+    public static Integer ContarBiblioteca(){
+        int i=0;
+        try {
+            Connection connManager = DriverManager
+                .getConnection(
+                    "jdbc:mysql://localhost:3306/"+banco,
+                    usuario,
+                    senha
+                );
+            PreparedStatement ps = connManager.prepareStatement("SELECT * FROM biblioteca");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                i++;
+            }
+            connManager.close();
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return i;
+    }
+    //Incerir Livro na Biblioteca-----------------------------------------------------
+    public static void InserirLivroBiblioteca(int biblioteca, int livro){
+        try {
+            Connection connManager = DriverManager
+            .getConnection(
+                "jdbc:mysql://localhost:3306/"+banco,
+                usuario,
+                senha
             );
-            connManager.close();           
-            return autor;
+            String sql = "UPDATE livro SET id_biblioteca = ? WHERE id_livro="+livro;
+            try (PreparedStatement statement = connManager.prepareStatement(sql)) {
+                // Define os parâmetros
+                statement.setInt(1, biblioteca);
+
+                // Executa a inserção
+                int linhasAfetadas = statement.executeUpdate();
+
+                if (linhasAfetadas > 0) {
+                    System.out.println("Livro Incuido na biblioteca com sucesso!");
+                } else {
+                    System.out.println("Falha ao Incuir Livro na biblioteca.");
+                }
+            }
+            connManager.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    //listar Livro da Biblioteca----------------------------------------------
+    public static ArrayList listarLivroBiblioteca(int op,int biblioteca){
+        ArrayList<Integer> idLivros = new ArrayList<>();
+        try {
+            Connection connManager = DriverManager
+                .getConnection(
+                    "jdbc:mysql://localhost:3306/"+banco,
+                    usuario,
+                    senha
+                );
+            PreparedStatement ps = connManager.prepareStatement("SELECT livro.id_livro, livro.titulo, biblioteca.nome as nome FROM livro JOIN biblioteca ON livro.id_biblioteca = biblioteca.id_biblioteca WHERE biblioteca.id_biblioteca ="+biblioteca);
+            //ResultSet rs = ps.executeQuery(); 
+            boolean temResultado = ps.execute();
+
+                // Verificar se há um conjunto de resultados (SELECT)
+                if (temResultado) {
+                    do {
+                        // Processar os resultados
+                        ResultSet rs = ps.getResultSet();
+                        while (rs.next()) {
+                            System.out.println(rs.getString("titulo"));
+                            //System.out.println(rs.getInt("id_livro"));
+                        }
+                        // Verificar se há mais conjuntos de resultados
+                        temResultado = ps.getMoreResults();
+
+                    } while (temResultado);
+                }
+            connManager.close();
+            return idLivros;
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
             return null;
         }
-    }
-    
-    
-
-
-
-    // todo: Inserir usuario---------------------------------------------------
-    public void InserirUsuario(String nome, String email, String senha){
-        try {
-            Connection connManager = DriverManager
-            .getConnection(
-                "jdbc:mysql://localhost:3306/"+this.banco,
-                this.usuario,
-                this.senha
-            );
-            String sql = "INSERT INTO usuario (nome_usuario, email, senha) VALUES (?, ?, ?)";
-            try (PreparedStatement statement = connManager.prepareStatement(sql)) {
-                // Define os parâmetros
-                statement.setString(1, nome);
-                statement.setString(2, email);
-                statement.setString(3, senha);
-
-                // Executa a inserção
-                int linhasAfetadas = statement.executeUpdate();
-
-                if (linhasAfetadas > 0) {
-                    System.out.println("Usuário cadastrado com sucesso!");
-                } else {
-                    System.out.println("Falha ao cadastrar o usuário.");
-                }
-            }
-            connManager.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    // todo: Alterar usuario---------------------------------------------------
-    public void AlterarUsuario(Integer id, String nome, String email){
-        try {
-            Connection connManager = DriverManager
-            .getConnection(
-                "jdbc:mysql://localhost:3306/"+this.banco,
-                this.usuario,
-                this.senha
-            );
-            String sql = "UPDATE usuario SET nome_usuario = ?, email = ? WHERE id = ?";
-            try (PreparedStatement statement = connManager.prepareStatement(sql)) {
-                // Define os parâmetros
-                statement.setString(1, nome);
-                statement.setString(2, email);
-                statement.setInt(3, id);
-
-                // Executa a inserção
-                int linhasAfetadas = statement.executeUpdate();
-
-                if (linhasAfetadas > 0) {
-                    System.out.println("Usuário alterado com sucesso!");
-                } else {
-                    System.out.println("Falha ao alterar o usuário.");
-                }
-            }
-            connManager.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    // todo: Selecionar Usuario------------------------------------------------
-    public void SelecionarUsuario(int op){
-        try {
-            Connection connManager = DriverManager
-                .getConnection(
-                    "jdbc:mysql://localhost:3306/"+this.banco,
-                    this.usuario,
-                    this.senha
-                );
-            PreparedStatement ps = connManager.prepareStatement("SELECT * FROM usuario");
-            ResultSet rs = ps.executeQuery();
-            if(op==1){
-                int i=1;
-                while (rs.next()) {   
-                System.out.println("["+i+"] => "+rs.getString("nome_usuario")+"  "+rs.getString("email"));
-                i++;
-                }
-            }else{
-                while (rs.next()) {
-                System.out.println(rs.getString("nome_usuario")+"  "+rs.getString("email"));
-            }
-            }
-            while (rs.next()) {
-                System.out.println(rs.getString("nome_usuario")+"  "+rs.getString("email"));
-            }
-            connManager.close();
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-        }
-    }
-    // todo: Selecionar Usuario Expecifico-------------------------------------
-    public void SelecionarUsuarioExpecifico(int id){
-        try {
-            Connection connManager = DriverManager
-                .getConnection(
-                    "jdbc:mysql://localhost:3306/"+this.banco,
-                    this.usuario,
-                    this.senha
-                );
-            PreparedStatement ps = connManager.prepareStatement("SELECT nome_usuario FROM sistema.usuario WHERE id="+id);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                System.out.println(rs.getString("nome_usuario"));
-            }
-            connManager.close();           
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-        }
-    }
-    // todo: Selecionar Excluir Usuario Expecifico-----------------------------  
-    public void ExcluirUsuarioExpecifico(int p1){
-        try{
-            Connection connManager = DriverManager
-            .getConnection(
-                "jdbc:mysql://localhost:3306/"+this.banco,
-                this.usuario,
-                this.senha
-            );
-            // SQL para deletar um usuário
-            String sql = "DELETE FROM usuario WHERE id = ?";
-            try (PreparedStatement statement = connManager.prepareStatement(sql)) {
-                // Define o parâmetro (ID do usuário)
-                statement.setInt(1, p1);
-                // Executa o comando de exclusão
-                int linhasAfetadas = statement.executeUpdate();
-                if (linhasAfetadas > 0) {
-                    System.out.println("Usuário deletado com sucesso!");
-                } else {
-                    System.out.println("Nenhum usuário foi deletado. Verifique o ID do usuário.");
-                }
-                connManager.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    // todo: Logar Usuario Expecifico------------------------------------------
-    public ArrayList LogarUsuarioExpecifico(ArrayList<String> usuarios){
-        try {
-            Connection connManager = DriverManager
-                .getConnection(
-                    "jdbc:mysql://localhost:3306/"+this.banco,
-                    this.usuario,
-                    this.senha
-                );
-            PreparedStatement ps = connManager.prepareStatement("SELECT * FROM usuario");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                usuarios.add(rs.getString("nome_usuario")+rs.getString("senha"));
-            }
-            connManager.close();           
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-        }
-        return usuarios;
     }
 }

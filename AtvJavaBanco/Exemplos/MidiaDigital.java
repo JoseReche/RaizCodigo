@@ -1,9 +1,9 @@
 public class MidiaDigital extends Midia {
-    private String album;
+    protected String album;
 
    //private static ArrayList<MidiaDigital> midiasDigitais = new ArrayList<>();
 
-    public MidiaDigital(String titulo, String album, boolean disponivel) {
+    public MidiaDigital(String titulo, String album, Integer disponivel) {
         super(titulo, disponivel);
         this.album = album;
 
@@ -12,10 +12,10 @@ public class MidiaDigital extends Midia {
     public String getAlbum() {
         return this.album;
     }
-    public String toString() {
+    /*public String toString() {
         return "Título: " + super.getTitulo()
             + ". Álbum: " + this.album
-            + ". Disponível: " + (super.getDisponivel() ? "Sim" : "Não");
-    }
+            + ". Disponível: " + (super.getDisponivel());
+    }*/
 
 }

@@ -1,9 +1,16 @@
 public class Midia {
-    
-    private String titulo;
-    private boolean disponivel;
 
-    public Midia(String titulo, boolean disponivel) {
+    protected int id;
+    protected String titulo;
+    protected Integer disponivel;
+
+    public Midia(int id, String titulo, Integer disponivel) {
+        this.titulo = titulo;
+        this.disponivel = disponivel;
+        this.id = id;
+    }
+
+    public Midia(String titulo, Integer disponivel) {
         this.titulo = titulo;
         this.disponivel = disponivel;
     }
@@ -12,7 +19,7 @@ public class Midia {
         this.titulo = titulo;
     }
 
-    public void setDisponivel(boolean disponivel) {
+    public void setDisponivel(Integer disponivel) {
         this.disponivel = disponivel;
     }
 
@@ -20,26 +27,32 @@ public class Midia {
         return this.titulo;
     }
 
-    public boolean getDisponivel() {
+    public Integer getDisponivel() {
         return this.disponivel;
     }
 
     public String toString() {
-        return "Título: " + this.titulo + ". Disponível: " + (this.disponivel ? "Sim" : "Não");
+        String disp="";
+        if (this.disponivel != 0) {
+            disp = "Não";
+        }else{
+            disp = "Sim";
+        }
+        return "Título: " + this.titulo + ". Disponível: " + disp;
     }
 
     public void emprestar() throws Exception {
-        if (!this.disponivel) {
+        if (this.disponivel==1) {
             throw new Exception("Midia não está disponível");
         }
-        this.disponivel = false;
+        this.disponivel = 1;
     }
 
     public void devolver() throws Exception {
-        if (this.disponivel) {
+        if (this.disponivel==0) {
             throw new Exception("Midia já está disponível");
         }
-        this.disponivel = true;
+        this.disponivel = 0;
     }
 
 }
