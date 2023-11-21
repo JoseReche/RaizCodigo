@@ -128,13 +128,13 @@ public class Gerenciar {
                    // Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
 
                     int posicaoLivro = -1;
-                    Conexao.listarLivroBiblioteca(posicaoBiblioteca);
                     do {
+                        Conexao.listarLivroBiblioteca(posicaoBiblioteca);
                         try {
                             posicaoLivro = scanner.nextInt();
-                            /*if (posicaoLivro >= Livro.getLivros().size()) {
+                            if (posicaoLivro > Conexao.ContarLivroBiblioteca(posicaoBiblioteca)) {
                                 throw new Exception("Livro inválido");
-                            }*/
+                            }
                         } catch (Exception e) {
                             System.out.println("Livro inválido");
                             posicaoLivro = -1;
@@ -168,26 +168,23 @@ public class Gerenciar {
                     //Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
 
                     int posicaoLivro = -1;
-                    Conexao.listarLivroBiblioteca(posicaoBiblioteca);
                     do {
-                        //biblioteca.listarLivros();
+                        Conexao.listarLivroBiblioteca(posicaoBiblioteca);
                         try {
                             posicaoLivro = scanner.nextInt();
-                            /*if (posicaoLivro >= Livro.getLivros().size()) {
+                            if (posicaoLivro > Conexao.ContarLivroBiblioteca(posicaoBiblioteca)) {
                                 throw new Exception("Livro inválido");
-                            }*/
+                            }
                         } catch (Exception e) {
                             System.out.println("Livro inválido");
                             posicaoLivro = -1;
                         }
                     } while (posicaoLivro < 0);
-
-                    Conexao.DevolverLivro(posicaoLivro);
-                    /*try {
-                        livro.devolver();
+                    try {
+                        Conexao.DevolverLivro(posicaoLivro);                     
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
-                    }*/
+                    }
                     break;
                 }
                 case 8: {
@@ -212,7 +209,7 @@ public class Gerenciar {
                         Conexao.listarMidiaDigital(1);
                         try {
                             posicaoMidiaDigital = scanner.nextInt();
-                            if (posicaoMidiaDigital > Conexao.ContarMidiaDigital()) {
+                            if (posicaoMidiaDigital > Conexao.ContarMidiaBiblioteca(posicaoBiblioteca)){
                                 throw new Exception("Midia Digital inválido");
                             }
                         } catch (Exception e) {
@@ -242,15 +239,14 @@ public class Gerenciar {
                     } while (posicaoBiblioteca < 0);
 
                     //Biblioteca biblioteca = Biblioteca.getBibliotecas().get(posicaoBiblioteca);
-
                     int posicaoMidiaDigital = -1;
-                    Conexao.listarMidiaDigitalBiblioteca(posicaoBiblioteca);
                     do {
+                        Conexao.listarMidiaDigitalBiblioteca(posicaoBiblioteca);
                         try {
                             posicaoMidiaDigital = scanner.nextInt();
-                            /*if (posicaoMidiaDigital >= MidiaDigital.getMidiasDigitals().size()) {
+                            if (posicaoMidiaDigital > Conexao.ContarMidiaBiblioteca(posicaoBiblioteca)) {
                                 throw new Exception("Midia Digital inválido");
-                            }*/
+                            }
                         } catch (Exception e) {
                             System.out.println("Midia Digital inválido");
                             posicaoMidiaDigital = -1;

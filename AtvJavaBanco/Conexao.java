@@ -274,7 +274,6 @@ public class Conexao {
         }
     }
 
-
     //! Livro-------------------------------
     //Inserir Livro-----------------------------------------------------
     public static void InserirLivro(Livro livro){
@@ -495,6 +494,51 @@ public class Conexao {
         }
         return i;
     }
+    //Contar Livro Biblioteca-----------------------------------------------------
+    public static Integer ContarLivroBiblioteca(int biblioteca){
+        int i=1;
+        try {
+            Connection connManager = DriverManager
+                .getConnection(
+                    "jdbc:mysql://localhost:3306/"+banco,
+                    usuario,
+                    senha
+                );
+            PreparedStatement ps = connManager.prepareStatement("SELECT livro.id_livro, livro.titulo, livro.disponivel as nome FROM livro JOIN biblioteca ON livro.id_biblioteca = biblioteca.id_biblioteca WHERE biblioteca.id_biblioteca ="+biblioteca);
+            //ResultSet rs = ps.executeQuery(); 
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                i++;
+            }
+            connManager.close();
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return i;
+    }
+    //Contar Livro Biblioteca-----------------------------------------------------
+    public static Integer ContarMidiaBiblioteca(int biblioteca){
+        int i=1;
+        try {
+            Connection connManager = DriverManager
+                .getConnection(
+                    "jdbc:mysql://localhost:3306/"+banco,
+                    usuario,
+                    senha
+                );
+            PreparedStatement ps = connManager.prepareStatement("SELECT midia_digital.id_midia_digital, midia_digital.titulo, midia_digital.disponivel as nome FROM midia_digital JOIN biblioteca ON midia_digital.id_biblioteca = biblioteca.id_biblioteca WHERE biblioteca.id_biblioteca ="+biblioteca);
+            //ResultSet rs = ps.executeQuery(); 
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                i++;
+            }
+            connManager.close();
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return i;
+    }
+    
     //Incerir Livro na Biblioteca-----------------------------------------------------
     public static void InserirLivroBiblioteca(int biblioteca, int livro){
         try {
@@ -599,5 +643,4 @@ public class Conexao {
             System.out.println(exception.getMessage());
         }
     }
-    
 }
